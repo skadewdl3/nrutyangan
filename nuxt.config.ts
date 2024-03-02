@@ -13,7 +13,6 @@ export default defineNuxtConfig({
         signInResponseTokenPointer: '/token',
       },
     },
-
     enableSessionRefreshPeriodically: 5000,
     enableSessionRefreshOnWindowFocus: true,
   },

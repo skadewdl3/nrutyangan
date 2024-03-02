@@ -21,6 +21,10 @@
         validator: {
             type: Function,
             default: null
+        },
+        placeholder: {
+            type: String,
+            default: ''
         }
     })
 
@@ -33,15 +37,16 @@
 
 <template>
     <div
-        class="input__wrapper flex w-full items-center px-4 py-2 my-2 border-solid border-2 w-full rounded"
+        class="input__wrapper flex w-full items-center px-4 py-2 my-2 border-solid border-[#ccc] focus:border-[#aaa] border-2 rounded"
         :class="{
-            'border-red-500': !valid && model.length > 0,
-            'border-[#ccc] focus:border-[#aaa]': valid || model.length === 0
+            'border-b-red-500': !valid,
+            'border-b-primary': valid
         }"
         >
 
         <input
             v-model="model"
+            :placeholder="props.placeholder"
             :type="type"
             class="outline-none transition-all"
         >

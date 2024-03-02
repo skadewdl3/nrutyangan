@@ -14,7 +14,7 @@
 </script>
 
 <template>
-    <select class="px-4 py-2 my-2 border-solid border-2 bg-white border-[#ccc] rounded outline-none">
+    <select v-model="model" class="px-4 py-2 my-2 border-solid border-2 bg-white border-[#ccc] rounded outline-none">
         <option v-for="item in props.items" :value="item">{{ item }}</option>
     </select>
 </template>
