@@ -10,10 +10,10 @@
     import { isEmpty } from 'validator'
 
 
-    const firstName = ref('')
-    const lastName = ref('')
-    const email = ref('')
-    const password = ref('')
+    const firstName = ref('Soham')
+    const lastName = ref('Karandikar')
+    const email = ref('sohamk10@gmail.com')
+    const password = ref('#Dance123')
     
     
     const mode = ref('register')
@@ -32,8 +32,8 @@
 
     const login = async () => {
         let res = await signIn({
-            firstName: 'Soham',
-            lastName: 'Karandikar'
+            email: email.value,
+            password: password.value
         }, {
             redirect: true,
             callbackUrl: '/secret'
@@ -41,13 +41,16 @@
     }
 
     const register = async () => {
-        // let res = await signUp({
-        //     email: 'sohamk10@gmail.com',
-        //     password: 'apssword',
-        // }, {
-        //     redirect: false
-        // })
-        // console.log(res)
+        let res = await signUp({
+            email: email.value,
+            password: password.value,
+            firstName: firstName.value,
+            lastName: lastName.value,
+            dob: dob.value
+        }, {
+            redirect: false
+        })
+        console.log(res)
     }
 
 </script>
@@ -59,7 +62,7 @@
             <Input v-model="email" placeholder="Email" type="email" />
             <Input v-model="password" placeholder="Password" type="password" />
             
-            <Button>Login</Button>
+            <Button @click="login">Login</Button>
             <Label>
                 Don't have an account yet?
                 <span @click="mode = 'register'" class="text-blue-700 font-bold cursor-pointer">Register now!</span>

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const StudentSchema = new mongoose.Schema({
+export default new mongoose.Schema({
   firstName: {
     type: String,
     trim: true,
@@ -18,15 +18,11 @@ const StudentSchema = new mongoose.Schema({
     lowercase: true,
     required: true,
   },
-  hashed_password: {
+  hashedPassword: {
     type: String,
   },
+  dob: {
+    type: Date,
+    required: true,
+  },
 })
-
-export interface IStudent {
-  firstName: string
-  lastName: string
-  email: string
-}
-
-export const Student = mongoose.model('Student', StudentSchema)

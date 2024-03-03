@@ -16,4 +16,10 @@ export default defineNuxtConfig({
     enableSessionRefreshPeriodically: 5000,
     enableSessionRefreshOnWindowFocus: true,
   },
+  runtimeConfig: {
+    public: ['MONGO_URI', 'JWT_SECRET'].reduce((acc: any, key) => {
+      acc[key] = process.env[key]
+      return acc
+    }, {}),
+  },
 })
