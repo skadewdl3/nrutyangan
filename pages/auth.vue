@@ -3,7 +3,7 @@
         middleware: ['auth'],
         auth: {
             unauthenticatedOnly: true,
-            navigateAuthenticatedTo: '/secret'
+            navigateAuthenticatedTo: '/dashboard'
         }
     })
 
@@ -36,7 +36,7 @@
             password: password.value
         }, {
             redirect: true,
-            callbackUrl: '/secret'
+            callbackUrl: '/dashboard'
         })
     }
 
