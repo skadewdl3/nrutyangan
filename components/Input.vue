@@ -1,12 +1,12 @@
 <script setup>
-    import { isEmail, isStrongPassword } from 'validator'
+    import validatorModule from 'validator';
 
      const getDefaultValidator = (type) => {
         switch (type) {
             case 'email':
-                return isEmail
+                return validatorModule.isEmail
             case 'password':
-                return isStrongPassword
+                return validatorModule.isStrongPassword
             default:
                 return () => true
         }

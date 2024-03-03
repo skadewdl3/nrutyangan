@@ -7,7 +7,7 @@
         }
     })
 
-    import { isEmpty } from 'validator'
+    import validatorModule from 'validator';
 
 
     const firstName = ref('Soham')
@@ -70,8 +70,8 @@
         </div>
          <div v-else class="auth__container rounded flex flex-col bg-white px-8 py-4">
             <Label class="mx-auto text-4xl">Register</Label>
-            <Input v-model="firstName" placeholder="First Name" type="text" :validator="(x: string) => !isEmpty(x)" />
-            <Input v-model="lastName" placeholder="Last Name" type="text" :validator="(x: string) => !isEmpty(x)" />
+            <Input v-model="firstName" placeholder="First Name" type="text" :validator="(x: string) => !validatorModule.isEmpty(x)" />
+            <Input v-model="lastName" placeholder="Last Name" type="text" :validator="(x: string) => !validatorModule.isEmpty(x)" />
             <Input v-model="email" placeholder="Email" type="email" />
             <Input v-model="password" placeholder="Password" type="password" />
             <Label class="mt-4">Select date of birth</Label>
