@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  routeRules: {},
+  ssr: false,
   devtools: { enabled: true },
   modules: ['@sidebase/nuxt-auth', '@nuxtjs/tailwindcss', 'nuxt-icon'],
   auth: {
@@ -10,7 +12,10 @@ export default defineNuxtConfig({
       type: 'local',
       token: {
         maxAgeInSeconds: 60 * 60 * 24,
+        expires: new Date(Date.now() + 60 * 60 * 24 * 1000),
         signInResponseTokenPointer: '/token',
+        type: 'Bearer',
+        headerName: 'Authorization',
       },
     },
     enableSessionRefreshPeriodically: 5000,

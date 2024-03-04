@@ -1,32 +1,23 @@
 import mongoose from 'mongoose'
 
 export default new mongoose.Schema({
-  firstName: {
+  name: {
     type: String,
     trim: true,
     required: true,
   },
-  lastName: {
+  location: {
     type: String,
     trim: true,
     required: true,
   },
-  email: {
+  course_id: {
     type: String,
     trim: true,
-    unique: true,
-    lowercase: true,
     required: true,
   },
-  hashedPassword: {
-    type: String,
-  },
-  course: {
-    type: String,
+  teacher_id: {
+    type: Array,
     required: false,
-  },
-  dob: {
-    type: Date,
-    required: true,
   },
 })

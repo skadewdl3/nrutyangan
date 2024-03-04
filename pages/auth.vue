@@ -50,7 +50,7 @@
         }, {
             redirect: false
         })
-        console.log(res)
+        // console.log(res)
     }
 
 </script>

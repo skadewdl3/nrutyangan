@@ -11,22 +11,8 @@ export default new mongoose.Schema({
     trim: true,
     required: true,
   },
-  email: {
-    type: String,
-    trim: true,
-    unique: true,
-    lowercase: true,
-    required: true,
-  },
-  hashedPassword: {
-    type: String,
-  },
-  course: {
+  teacher_id: {
     type: String,
     required: false,
-  },
-  dob: {
-    type: Date,
-    required: true,
   },
 })

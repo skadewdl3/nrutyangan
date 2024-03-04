@@ -25,6 +25,11 @@
         placeholder: {
             type: String,
             default: ''
+        },
+        disabled: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     })
 
@@ -39,8 +44,9 @@
     <div
         class="input__wrapper flex w-full items-center px-4 py-2 my-2 border-solid border-[#ccc] focus:border-[#aaa] border-2 rounded"
         :class="{
-            'border-b-red-500': !valid,
-            'border-b-primary': valid
+            'border-b-red-500': !disabled && !valid,
+            'border-b-primary': !disabled && valid,
+            'border-[#ccc] bg-[#eee]': disabled
         }"
         >
 
@@ -48,7 +54,8 @@
             v-model="model"
             :placeholder="props.placeholder"
             :type="type"
-            class="outline-none transition-all"
+            class="outline-none transition-all w-full"
+            :disabled="props.disabled"
         >
         <button class="input__visibility text-xl" v-if="props.type == 'password'" @click="() => {
             hidden = !hidden;
