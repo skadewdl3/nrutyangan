@@ -21,6 +21,7 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@nuxt/image": "^1.4.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@sidebase/nuxt-auth": "^0.6.7",
     "@types/validator": "^13.11.9",

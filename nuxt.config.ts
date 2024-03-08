@@ -3,7 +3,15 @@ export default defineNuxtConfig({
   routeRules: {},
   ssr: false,
   devtools: { enabled: true },
-  modules: ['@sidebase/nuxt-auth', '@nuxtjs/tailwindcss', 'nuxt-icon'],
+  modules: [
+    '@sidebase/nuxt-auth',
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+    '@nuxt/image',
+  ],
+  image: {
+    dir: 'assets/images',
+  },
   auth: {
     provider: {
       pages: {
