@@ -7,5 +7,8 @@ export default <Partial<Config>>{
         primary: '#283C27',
       },
     },
+    fontFamily: {
+      display: ['Open Sans', 'sans-serif'],
+    },
   },
 }

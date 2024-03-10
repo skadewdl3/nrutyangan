@@ -70,8 +70,8 @@ const socials = [
   <Head>
     <Title>Nrutyangan</Title>
   </Head>
-  <div class="navbar z-10 sticky top-0 left-0 bg-primary text-white px-16 py-4 flex items-center justify-between">
-    <h1 class="navbar__left text-2xl drop-shadow-md">
+  <div class="navbar z-10 sticky top-0 left-0 bg-primary text-white px-16 py-4 flex items-center justify-between shadow-black/50 shadow-2xl">
+    <h1 class="navbar__left text-2xl">
       Nrutyangan - Kathak Dance Academy
     </h1>
     <div class="navbar__right">
@@ -107,10 +107,10 @@ const socials = [
     </div>
   </div>
   <div class="owner grid grid-cols-2 px-32 font-thin place-items-center my-16">
-    <div class="owner__info italic px-32 text-4xl text-center">
+    <div class="owner__info italic px-16 text-4xl text-center">
         Reshma Godambe is the owner of Nrutyangan Kathak Academy, Pune, an esteemed institution that was established by the late Mrs. Suvasini Botala in 1983. 
     </div>
-    <img src="~/assets/images/owner.jpg" class="w-3/4" />
+    <img src="~/assets/images/owner.jpg" class="w-5/6" />
   </div>
   <div class="testimonials">
     <LandingTitle>Testimonials</LandingTitle>
@@ -127,8 +127,8 @@ const socials = [
 
     </div>
   </div>
-  <div class="footer grid grid-cols-3 bg-primary text-white px-16">
-    <div class="footer__left px-8 text-2xl my-4">
+  <div class="footer grid grid-cols-3 bg-primary text-white px-16 font-light">
+    <div class="footer__left px-8 text-3xl my-4">
         <h2>Contact Us</h2>
         <div class="footer__socials">
             <a v-for="social in socials" class="flex items-center justify-start my-2" :href="social.link" target="_blank">
@@ -137,7 +137,7 @@ const socials = [
             </a>
         </div>
     </div>
-    <div class="footer__contacts grid grid-cols-2 grid-rows-2 px-8">
+    <div class="footer__contacts grid grid-cols-2 grid-rows-2 px-8 text-2xl">
         <div v-for="branch in branches" class="my-4">
             <p>{{ branch.name }}: {{ branch.teacher }}</p>
             <p>{{ branch.contact }}</p>
@@ -147,4 +147,7 @@ const socials = [
   </div>
 </template>
 
-<style lang="stylus"></style>
+<style lang="stylus">
+.navbar
+  text-shadow 3px 3px 5px rgba(#000, 0.5)
+</style>

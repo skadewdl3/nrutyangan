@@ -8,7 +8,13 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@nuxt/image',
+    '@nuxtjs/google-fonts',
   ],
+  googleFonts: {
+    families: {
+      'Open Sans': [300, 400, 700],
+    },
+  },
   auth: {
     provider: {
       pages: {
