@@ -1,7 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  routeRules: {},
-  ssr: false,
+  routeRules: {
+    '/': {
+      prerender: true,
+    },
+    '/auth': {
+      ssr: false,
+    },
+    '/dashboard': {
+      ssr: false,
+    },
+  },
   devtools: { enabled: true },
   modules: [
     '@sidebase/nuxt-auth',
@@ -9,6 +18,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxt/image',
     '@nuxtjs/google-fonts',
+    'vue3-carousel-nuxt',
   ],
   googleFonts: {
     families: {
