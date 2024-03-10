@@ -79,8 +79,8 @@ const socials = [
     </div>
   </div>
   <div class="hero relative items-center justify-center text-white">
-    <NuxtImg
-      src="/hero.jpeg"
+    <img
+      src="~/assets/images/hero.jpeg"
       alt="Nrutyangan Kathak Dance Academy"
       class="w-full h-full object-cover brightness-50"
     />
@@ -110,7 +110,7 @@ const socials = [
     <div class="owner__info italic px-32 text-4xl text-center">
         Reshma Godambe is the owner of Nrutyangan Kathak Academy, Pune, an esteemed institution that was established by the late Mrs. Suvasini Botala in 1983. 
     </div>
-    <NuxtImg src="/owner.jpg" class="w-3/4" />
+    <img src="~/assets/images/owner.jpg" class="w-3/4" />
   </div>
   <div class="testimonials">
     <LandingTitle>Testimonials</LandingTitle>
