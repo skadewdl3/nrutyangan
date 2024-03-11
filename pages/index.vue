@@ -56,7 +56,7 @@ const socials = [
     {
         name: 'Instagram',
         icon: 'streamline:instagram',
-        link: 'https://www.instagram.com/'
+        link: 'https://www.instagram.com/nrutyangan_kathak_academy?igsh=Z2Vra2N1bnN0dHp0'
     },
     {
         name: 'Facebook',
@@ -107,10 +107,10 @@ const socials = [
     </div>
   </div>
   <div class="owner grid grid-cols-2 px-32 font-thin place-items-center my-16">
-    <div class="owner__info italic px-16 text-4xl text-center">
-        Reshma Godambe is the owner of Nrutyangan Kathak Academy, Pune, an esteemed institution that was established by the late Mrs. Suvasini Botala in 1983. 
+    <div class="owner__info italic px-16 -ml-16 text-4xl text-justify">
+        <span class="font-normal">Reshma Godambe</span> is the owner of <span class="font-normal">Nrutyangan Kathak Academy</span>, Pune, an esteemed institution that was established by the late Mrs. Suvasini Botala in 1983. 
     </div>
-    <img src="~/assets/images/owner.jpg" class="w-5/6" />
+    <img src="~/assets/images/owner.jpg" class="w-full" />
   </div>
   <div class="testimonials">
     <LandingTitle>Testimonials</LandingTitle>
