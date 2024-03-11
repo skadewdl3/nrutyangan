@@ -12,9 +12,7 @@ const lastName = ref(ln)
 const editable = ref(false)
 
 const save = () => {
-    console.log('saving');
     editable.value = false
-    
 }
 
 
@@ -48,7 +46,7 @@ const logout = () => {
                 <Input :disabled="!editable" v-model="firstName" placeholder="First Name" :validator="(val: string) => !validatorModule.isEmpty(val)" />
                 <Input :disabled="!editable" v-model="lastName" placeholder="Last Name" type="text" :validator="(val: string) => !validatorModule.isEmpty(val)" />
             </div>
-            <div class="card">
+            <div class="card" v-if="course">
                 <p>Course: {{ course.name }}</p>
                 <p>Location: {{ course.location }}</p>
             </div>

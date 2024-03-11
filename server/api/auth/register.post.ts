@@ -9,7 +9,6 @@ import { useDB } from '~/composables/useDB'
 export default defineEventHandler(async event => {
   const db = await useDB('students')
   let body = await readBody(event)
-  console.log(body)
 
   let Student = db.model('Student', StudentSchema)
   let student = new Student(body)
@@ -17,13 +16,17 @@ export default defineEventHandler(async event => {
   student.hashedPassword = hashedPassword
 
   let newStudent: any = await student.save().catch(err => {
-    console.log(err)
-    return null
+    if (err.code == 11000) {
+      return { status: 'error', message: 'Email already exists' }
+    }
   })
 
+  if (!newStudent)
+    return { status: 'error', message: 'Unknown error while creating account' }
   newStudent.hashedPassword = undefined
 
-  return newStudent
-
-  // let student = new Student()
+  return {
+    status: 'success',
+    student: newStudent,
+  }
 })

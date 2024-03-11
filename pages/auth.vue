@@ -17,6 +17,8 @@
     
     
     const mode = ref('register')
+    const loading = ref(false)
+    const error = ref(null)
     
     const days = [...Array(31).keys()].map(i => i + 1)
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -31,16 +33,19 @@
     const { signIn, signUp } = useAuth()
 
     const login = async () => {
+        loading.value = true
         let res = await signIn({
             email: email.value,
             password: password.value
         }, {
             redirect: true,
             callbackUrl: '/dashboard'
-        })
+        }).catch(err => loading.value = false)
+        loading.value = false
     }
 
     const register = async () => {
+        loading.value = true
         let res = await signUp({
             email: email.value,
             password: password.value,
@@ -48,21 +53,25 @@
             lastName: lastName.value,
             dob: dob.value
         }, {
-            redirect: false
-        })
-        // console.log(res)
+            redirect: true,
+            callbackUrl: '/dashboard'
+        }).catch(err => loading.value = false)
+        loading.value = false
     }
 
 </script>
 
 <template>
-    <div class="auth__wrapper w-full h-screen flex items-center justify-center bg-primary">
+    <div class="auth__wrapper w-full h-screen flex items-center justify-center">
         <div v-if="mode == 'login'" class="auth__container rounded flex flex-col bg-white px-8 py-4">
             <Label class="mx-auto text-4xl">Login</Label>
             <Input v-model="email" placeholder="Email" type="email" />
             <Input v-model="password" placeholder="Password" type="password" />
             
-            <Button @click="login">Login</Button>
+            <Button @click="login" :loading="loading">Login</Button>
+            <Label v-if="error" class="text-red-500 font-bold">
+                {{ error }}
+            </Label>
             <Label>
                 Don't have an account yet?
                 <span @click="mode = 'register'" class="text-blue-700 font-bold cursor-pointer">Register now!</span>
@@ -80,7 +89,10 @@
                 <Dropdown placeholder="Month" :items="months" v-model="monthString" />
                 <Dropdown placeholder="Year" :items="years" v-model="year" />
             </div>
-            <Button @click="register">Register</Button>
+            <Button @click="register" :loading="loading">Register</Button>
+            <Label v-if="error" class="text-red-500 font-bold">
+                {{ error }}
+            </Label>
             <Label>
                 Already have an account?
                 <span @click="mode = 'login'" class="text-blue-700 font-bold cursor-pointer">Login now!</span>
@@ -89,6 +101,10 @@
     </div>
 </template>
 
-<style>
-    
+<style lang="stylus">
+.auth__wrapper
+    background url('~/assets/images/hero.jpeg') rgba(primaryColor, 0.7)
+    background-blend-mode overlay
+    background-repeat no-repeat
+    background-size cover
 </style>

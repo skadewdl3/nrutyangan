@@ -48,4 +48,13 @@ export default defineNuxtConfig({
       return acc
     }, {}),
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        stylus: {
+          additionalData: 'primaryColor = #283C27\n',
+        },
+      },
+    },
+  },
 })
