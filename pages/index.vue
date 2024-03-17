@@ -4,7 +4,6 @@ import timeToNow from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(timeToNow)
 
-const items = ['Our Story', 'Gurus', 'Our Events', 'Exams', 'Join Us']
 const branches = [
     {
         name: 'Dhayari',
@@ -67,17 +66,6 @@ const socials = [
 </script>
 
 <template>
-  <Head>
-    <Title>Nrutyangan</Title>
-  </Head>
-  <div class="navbar z-10 sticky top-0 left-0 bg-primary text-white px-16 py-4 flex items-center justify-between shadow-black/50 shadow-2xl">
-    <h1 class="navbar__left text-2xl">
-      Nrutyangan - Kathak Dance Academy
-    </h1>
-    <div class="navbar__right">
-      <a v-for="item in items" class="ml-4 drop-shadow-md">{{ item }}</a>
-    </div>
-  </div>
   <div class="hero relative items-center justify-center text-white">
     <img
       src="~/assets/images/hero.jpeg"

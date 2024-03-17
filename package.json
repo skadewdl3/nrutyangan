@@ -28,6 +28,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/validator": "^13.11.9",
+    "nuxt-aos": "^1.2.4",
     "nuxt-icon": "^0.6.8",
     "stylus": "^0.62.0"
   }

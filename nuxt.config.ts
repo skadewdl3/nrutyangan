@@ -5,10 +5,13 @@ export default defineNuxtConfig({
       prerender: true,
     },
     '/auth': {
-      ssr: false,
+      ssr: false, // nuxt-auth doesnt play well with ssr
     },
     '/dashboard': {
-      ssr: false,
+      ssr: false, // nuxt-auth doesnt play well with ssr
+    },
+    '/story': {
+      ssr: false, // nuxt-aos doesnt play well with ssr
     },
   },
   devtools: { enabled: true },
@@ -19,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/google-fonts',
     'vue3-carousel-nuxt',
+    'nuxt-aos',
   ],
   googleFonts: {
     families: {
