@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       ssr: false, // nuxt-auth doesnt play well with ssr
     },
     '/story': {
-      ssr: false, // nuxt-aos doesnt play well with ssr
+      ssr: true, // nuxt-aos doesnt play well with ssr
     },
   },
   devtools: { enabled: true },
