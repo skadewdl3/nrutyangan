@@ -112,23 +112,46 @@ const goToBranches = () => {
   </div>
   <div class="testimonials">
     <LandingTitle>Testimonials</LandingTitle>
-    <div class="testimonials__items hidden xl:grid grid-cols-3 w-full p-8">
 
-      <div v-for="(testimonial, i) in testimonials" class="testimonial__item w-full px-16 hidden lg:block">
-        <div class="flex items-center justify-between">
-            <Stars class="text-2xl" :stars="testimonials[i].stars" />
-            <div>{{ testimonial.date }}</div>
-        </div>
-        <p class="text-justify">{{ testimonial.content }}</p>
-        <p class="capitalize font-bold text-pink-400">- {{ testimonial.author }}</p>
-      </div>
-    </div>
+    <TestimonialViewer class="hidden xl:block my-8" :testimonials="testimonials" :start="start" :count="3" @next="start++" @prev="start--" />
 
     <TestimonialViewer class="hidden md:block xl:hidden" :testimonials="testimonials" :start="start" :count="2" @next="start++" @prev="start--" />
 
     <TestimonialViewer class="block md:hidden" :testimonials="testimonials" :start="start" :count="1" @next="start++" @prev="start--" />
   </div>
-  <div class="footer grid grid-cols-3 bg-primary text-white px-16 font-light">
+
+
+
+  <div class="footer-mobile lg:hidden">
+    <div class="branch-contacts bg-primary px-8 md:px-32 py-8">
+
+      <div class="contact-card bg-white my-4" v-for="branch in branches">
+        <div class="flex items-center justify-between px-4 py-2 border-solid border-gray-300 border-b-2">
+          <span class="uppercase font-bold">Area</span><span>{{ branch.name }}</span>
+        </div>
+        <div class="flex items-center justify-between px-4 py-2 border-solid border-gray-300 border-b-2">
+          <span class="uppercase font-bold">Teacher In-charge</span><span>{{ branch.teacher }}</span>
+        </div>
+        <div class="flex items-center justify-between px-4 py-2">
+          <span class="uppercase font-bold">Contact No.</span><span>{{ branch.contact }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="px-8 md:px-32 pb-8">
+      <LandingTitle>Contact Us</LandingTitle>
+      <div class="socials flex items-center justify-center">
+        <a v-for="social in socials" :href="social.link" target="_blank" class=" text-4xl mx-4 flex items-center justify-center rounded-full p-4 border-black border-2 border-solid">
+          <Icon :name="social.icon" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="footer hidden lg:grid lg:grid-cols-[1fr_2fr] bg-primary text-white px-16 font-light">
+
+
     <div class="footer__left px-8 text-3xl my-4">
         <h2>Contact Us</h2>
         <div class="footer__socials">

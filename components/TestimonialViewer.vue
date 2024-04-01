@@ -21,7 +21,7 @@ const emit = defineEmits(['prev', 'next'])
 <template>
     <div class="testimonials__wrapper">
             <div class="testimonials__items__container grid w-full" :class="`grid-cols-${count}`">
-                <div v-for="(testimonial, i) in testimonials.slice(start, start + count)" class="testimonial__item w-full" :class="{'px-8': count == 1}">
+                <div v-for="(testimonial, i) in testimonials.slice(start, start + count)" class="testimonial__item w-full px-8 md:px-16 xl:px-24">
                     <div class="flex items-center justify-between">
                         <Stars class="text-2xl" :stars="testimonials[i].stars as number" />
                   <div>{{ testimonial.date }}</div>
@@ -30,7 +30,7 @@ const emit = defineEmits(['prev', 'next'])
               <p class="capitalize font-bold text-pink-400">- {{ testimonial.author }}</p>
             </div>
         </div>
-        <div class="flex items-center justify-center w-full">
+        <div class="flex items-center justify-center w-full" v-if="count != testimonials.length">
               <Icon name="material-symbols-light:chevron-left" class="text-4xl cursor-pointer" :class="{'text-gray-300':!(start > 0)}"  @click="emit('prev')" />
             <span v-if="count != 1" class="mx-8">{{ start + 1 }} - {{ start + count }} / {{ testimonials.length }}</span>
             <span v-else>{{ start + 1 }} / {{ testimonials.length }}</span>
