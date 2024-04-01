@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import timeToNow from 'dayjs/plugin/relativeTime'
+import { chunk } from 'underscore'
 
 dayjs.extend(timeToNow)
 
@@ -64,11 +65,13 @@ const socials = [
     }
 ]
 
+const start = ref(0)
+
+const branchesElement = ref(null)
+
 const goToBranches = () => {
-  window.scrollTo({
-    top: (document.querySelector('.branches') as HTMLElement).offsetTop,
-    behavior: 'smooth'
-  })
+  // @ts-ignore
+  branchesElement.value.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 
@@ -87,7 +90,7 @@ const goToBranches = () => {
     <Button class="mx-auto my-6 rounded-full block lg:hidden" color="#fff" hoverColor="#eee" textColor="#000" @click="goToBranches">Explore more</Button>
     </div>
   </div>
-  <div class="branches">
+  <div class="branches" ref="branchesElement">
     <LandingTitle>Branches</LandingTitle>
     <div class="branches__items grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-primary w-full p-8">
       <div
@@ -102,17 +105,17 @@ const goToBranches = () => {
       </div>
     </div>
   </div>
-  <div class="owner grid grid-cols-2 px-32 font-thin place-items-center my-16">
-    <div class="owner__info italic px-16 -ml-16 text-4xl text-justify">
+  <div class="owner flex items-center flex-col-reverse lg:grid lg:grid-cols-2 px-8 md:px-32 lg:px-16 xl:px-32 font-thin place-items-center my-16">
+    <div class="owner__info italic mt-4 lg:mt-0 lg:px-8 xl:px-16 text-2xl lg:text-3xl xl:text-4xl text-justify">
         <span class="font-normal">Reshma Godambe</span> is the owner of <span class="font-normal">Nrutyangan Kathak Academy</span>, Pune, an esteemed institution that was established by the late Mrs. Suvasini Botala in 1983. 
     </div>
     <img src="~/assets/images/owner.jpg" class="w-full" />
   </div>
   <div class="testimonials">
     <LandingTitle>Testimonials</LandingTitle>
-    <div class="testimonials__items grid grid-cols-3 w-full p-8">
+    <div class="testimonials__items hidden xl:grid grid-cols-3 w-full p-8">
 
-      <div v-for="(testimonial, i) in testimonials" class="testimonial__item w-full px-16">
+      <div v-for="(testimonial, i) in testimonials" class="testimonial__item w-full px-16 hidden lg:block">
         <div class="flex items-center justify-between">
             <Stars class="text-2xl" :stars="testimonials[i].stars" />
             <div>{{ testimonial.date }}</div>
@@ -120,8 +123,11 @@ const goToBranches = () => {
         <p class="text-justify">{{ testimonial.content }}</p>
         <p class="capitalize font-bold text-pink-400">- {{ testimonial.author }}</p>
       </div>
-
     </div>
+
+    <TestimonialViewer class="hidden md:block xl:hidden" :testimonials="testimonials" :start="start" :count="2" @next="start++" @prev="start--" />
+
+    <TestimonialViewer class="block md:hidden" :testimonials="testimonials" :start="start" :count="1" @next="start++" @prev="start--" />
   </div>
   <div class="footer grid grid-cols-3 bg-primary text-white px-16 font-light">
     <div class="footer__left px-8 text-3xl my-4">

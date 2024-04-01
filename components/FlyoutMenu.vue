@@ -22,7 +22,7 @@ const close = () => {
 </script>
 
 <template>
-	<div class="absolute top-0 right-0 w-full h-screen z-[11] flex justify-end" @click="close">
+	<div class="fixed top-0 right-0 w-full h-screen z-[11] flex justify-end" @click="close">
 		<div class="wrapper w-[90%] lg:w-3/4 h-full relative bg-black/85 text-white text-2xl" @click.stop="">
 
 			<div class="close-btn w-full px-4 lg:px-16 py-4 flex justify-end">
