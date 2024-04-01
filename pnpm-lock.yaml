@@ -23,9 +23,6 @@ dependencies:
   nuxt:
     specifier: ^3.10.3
     version: 3.11.1(@unocss/reset@0.58.8)(floating-vue@5.2.2)(stylus@0.62.0)(unocss@0.58.8)(vite@5.2.7)
-  underscore:
-    specifier: ^1.13.6
-    version: 1.13.6
   validator:
     specifier: ^13.11.0
     version: 13.11.0
@@ -58,9 +55,6 @@ devDependencies:
   '@types/jsonwebtoken':
     specifier: ^9.0.6
     version: 9.0.6
-  '@types/underscore':
-    specifier: ^1.11.15
-    version: 1.11.15
   '@types/validator':
     specifier: ^13.11.9
     version: 13.11.9
@@ -1827,10 +1821,6 @@ packages:
 
   /@types/resolve@1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
-
-  /@types/underscore@1.11.15:
-    resolution: {integrity: sha512-HP38xE+GuWGlbSRq9WrZkousaQ7dragtZCruBVMi0oX1migFZavZ3OROKHSkNp/9ouq82zrWtZpg18jFnVN96g==}
-    dev: true
 
   /@types/validator@13.11.9:
     resolution: {integrity: sha512-FCTsikRozryfayPuiI46QzH3fnrOoctTjvOYZkho9BTFLCOZ2rgZJHMOVgCOfttjPJcgOx52EpkY0CMfy87MIw==}
@@ -7127,10 +7117,6 @@ packages:
       estree-walker: 3.0.3
       magic-string: 0.30.8
       unplugin: 1.10.1
-
-  /underscore@1.13.6:
-    resolution: {integrity: sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==}
-    dev: false
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import timeToNow from 'dayjs/plugin/relativeTime'
-import { chunk } from 'underscore'
 
 dayjs.extend(timeToNow)
 
