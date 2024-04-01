@@ -63,6 +63,13 @@ const socials = [
         link: 'https://www.facebook.com/'
     }
 ]
+
+const goToBranches = () => {
+  window.scrollTo({
+    top: (document.querySelector('.branches') as HTMLElement).offsetTop,
+    behavior: 'smooth'
+  })
+}
 </script>
 
 <template>
@@ -70,23 +77,24 @@ const socials = [
     <img
       src="~/assets/images/hero.jpeg"
       alt="Nrutyangan Kathak Dance Academy"
-      class="w-full h-full object-cover brightness-50"
+      class="w-full h-screen lg:h-full object-cover brightness-50"
     />
     <div
       class="hero-text absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
     >
-      <h1 class="text-8xl font-bold drop-shadow-xl italic">Nrutyangan</h1>
-      <h3 class="text-6xl drop-shadow-xl mt-8">Kathak Dance Academy</h3>
+      <h1 class="text-5xl md:text-6xl xl:text-8xl font-bold drop-shadow-xl italic">Nrutyangan</h1>
+      <h3 class="text-3xl md:text-4xl xl:text-6xl drop-shadow-xl mt-8">Kathak Dance Academy</h3>
+    <Button class="mx-auto my-6 rounded-full block lg:hidden" color="#fff" hoverColor="#eee" textColor="#000" @click="goToBranches">Explore more</Button>
     </div>
   </div>
   <div class="branches">
     <LandingTitle>Branches</LandingTitle>
-    <div class="branches__items grid grid-cols-4 bg-primary w-full p-8">
+    <div class="branches__items grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-primary w-full p-8">
       <div
         v-for="(branch, index) in branches"
         class="w-full aspect-square p-4 bg-white"
         :class="{
-          'border-solid border-r-2 border-r-stone-400':
+          'border-solid border-stone-400 border-b-2 lg:border-b-0 md:border-r-2':
             index != branches.length - 1,
         }"
       >

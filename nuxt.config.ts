@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   routeRules: {
     '/': {
-      prerender: true,
+      ssr: true,
     },
     '/auth': {
       ssr: false, // nuxt-auth doesnt play well with ssr
