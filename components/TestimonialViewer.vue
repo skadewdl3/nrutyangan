@@ -32,7 +32,8 @@ const emit = defineEmits(['prev', 'next'])
         </div>
         <div class="flex items-center justify-center w-full">
               <Icon name="material-symbols-light:chevron-left" class="text-4xl cursor-pointer" :class="{'text-gray-300':!(start > 0)}"  @click="emit('prev')" />
-            <span class="mx-8">{{ start + 1 }} - {{ start + count }} / {{ testimonials.length }}</span>
+            <span v-if="count != 1" class="mx-8">{{ start + 1 }} - {{ start + count }} / {{ testimonials.length }}</span>
+            <span v-else>{{ start + 1 }} / {{ testimonials.length }}</span>
               <Icon name="material-symbols-light:chevron-right" class="text-4xl cursor-pointer" :class="{'text-gray-300': !(start + count < testimonials.length)}" @click="emit('next')"/>
           </div>
         </div>
