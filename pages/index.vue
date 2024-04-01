@@ -146,4 +146,7 @@ const goToBranches = () => {
 <style lang="stylus">
 .navbar
   text-shadow 3px 3px 5px rgba(#000, 0.5)
+
+body
+  overflow-x hidden
 </style>
