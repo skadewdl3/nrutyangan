@@ -113,7 +113,7 @@ const goToBranches = () => {
   <div class="testimonials">
     <LandingTitle>Testimonials</LandingTitle>
 
-    <TestimonialViewer class="hidden xl:block my-8" :testimonials="testimonials" :start="start" :count="3" @next="start++" @prev="start--" />
+    <TestimonialViewer class="hidden xl:block my-8" :testimonials="testimonials" :start="start" :count="2" @next="start++" @prev="start--" />
 
     <TestimonialViewer class="hidden md:block xl:hidden" :testimonials="testimonials" :start="start" :count="2" @next="start++" @prev="start--" />
 

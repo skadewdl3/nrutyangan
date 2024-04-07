@@ -16,18 +16,20 @@ const {testimonials, start, count} = defineProps({
 
 const emit = defineEmits(['prev', 'next'])
 
+console.log(testimonials.slice(start, start + count));
+
 </script>
 
 <template>
     <div class="testimonials__wrapper">
-            <div class="testimonials__items__container grid w-full" :class="`grid-cols-${count}`">
-                <div v-for="(testimonial, i) in testimonials.slice(start, start + count)" class="testimonial__item w-full px-8 md:px-16 xl:px-24">
-                    <div class="flex items-center justify-between">
-                        <Stars class="text-2xl" :stars="testimonials[i].stars as number" />
-                  <div>{{ testimonial.date }}</div>
+        <div class="testimonials__items__container w-full grid" :class="`grid-cols-${count}`">
+            <div v-for="(testimonial, i) in testimonials.slice(start, start + count)" class="testimonial__item w-full px-8 md:px-16 xl:px-32">
+                <div class="flex items-center justify-between">
+                    <Stars class="text-2xl" :stars="testimonials[i].stars as number" />
+                    <span>{{ testimonial.date }}</span>
                 </div>
                 <p class="text-justify">{{ testimonial.content }}</p>
-              <p class="capitalize font-bold text-pink-400">- {{ testimonial.author }}</p>
+                <p class="capitalize font-bold text-pink-400">- {{ testimonial.author }}</p>
             </div>
         </div>
         <div class="flex items-center justify-center w-full" v-if="count != testimonials.length">
@@ -35,6 +37,6 @@ const emit = defineEmits(['prev', 'next'])
             <span v-if="count != 1" class="mx-8">{{ start + 1 }} - {{ start + count }} / {{ testimonials.length }}</span>
             <span v-else>{{ start + 1 }} / {{ testimonials.length }}</span>
               <Icon name="material-symbols-light:chevron-right" class="text-4xl cursor-pointer" :class="{'text-gray-300': !(start + count < testimonials.length)}" @click="emit('next')"/>
-          </div>
         </div>
+    </div>
 </template>
