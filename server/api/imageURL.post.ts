@@ -1,11 +1,20 @@
 import { useFirebase } from '~/composables/useFirebase'
 
 export default defineEventHandler(async event => {
-  const { name } = await readBody(event)
+  const body = await readBody(event)
+  let names = body.names
   let bucket = await useFirebase()
-  let urls = await bucket.file(name).getSignedUrl({
-    action: 'read',
-    expires: Date.now() + 1000 * 60 * 60,
-  })
-  return urls[0]
+  let urls = await Promise.all(
+    names.map(async (name: string) => {
+      return name == null
+        ? null
+        : (
+            await bucket.file(name).getSignedUrl({
+              action: 'read',
+              expires: Date.now() + 1000 * 60 * 60,
+            })
+          )[0]
+    })
+  )
+  return urls
 })
