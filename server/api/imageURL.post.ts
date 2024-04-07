@@ -6,14 +6,12 @@ export default defineEventHandler(async event => {
   let bucket = await useFirebase()
   let urls = await Promise.all(
     names.map(async (name: string) => {
-      return name == null
-        ? null
-        : (
-            await bucket.file(name).getSignedUrl({
-              action: 'read',
-              expires: Date.now() + 1000 * 60 * 60,
-            })
-          )[0]
+        return (
+          await bucket.file(name).getSignedUrl({
+            action: 'read',
+            expires: Date.now() + 1000 * 60 * 60,
+          })
+        )[0]
     })
   )
   return urls
