@@ -10,21 +10,17 @@ type FileType = {
 const files = ref<Array<FileType>>(filesResponse.data.value?.map(x => ({name: x, url: null, error: null})) || [])
 
 
-// console.log(url.data.value);
-console.log(files.value);
 let start = ref(0)
-let count = 3 // preload count
+let count = 3
 
 const fetchURLs = async () => {
     console.log('start now is', start.value);
     let names = files.value.slice(start.value, (start.value + count) > files.value.length ? files.value.length : start.value + count).map(x => (x.url ? null : x.name))
-    console.log(names);
 
     await $fetch<Array<string>>('/api/imageURL', {
         method: 'POST',
         body: {names}
     }).then(urls => {
-        console.log(urls);
         for (let i = start.value; i < start.value + count; i++) {
             if (i > files.value.length - 1) {
                 break
@@ -33,6 +29,7 @@ const fetchURLs = async () => {
                 continue
             }
             files.value[start.value + i].url = urls[i]
+            console.log('loaded image', start.value + i);
         }
         
     }).catch(err => {
@@ -45,10 +42,6 @@ const fetchURLs = async () => {
         
     })
     
-
-    
-
-    console.log(files.value)
 }
 
 watch(start, fetchURLs, {immediate: true})
@@ -62,11 +55,7 @@ watch(start, fetchURLs, {immediate: true})
             <Button @click="start = (start - 1 < 0) ? files.length - 1 : start - 1">Prev</Button>
         </div>
         <div class="gallery__image">
-            <div v-for="file in files">
-                <p>{{ file.name }}</p>
-                <br />
-                <img class="w-1/3" v-if="file.url" :src="file.url" :alt="file.name">
-            </div>
+            <img class="w-1/3" v-if="files[start].url" :src="files[start].url || ''" :alt="files[start].name">
         </div>
         
     </div>    
