@@ -4,6 +4,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: ''
+  },
+  startImage: {
+    type: String,
+    requird: false,
+    default: undefined
   }
 })
 
@@ -25,8 +30,15 @@ const files = ref<Array<FileType>>(
     []
 )
 
+
+
 let start = ref(0)
 let count = 3
+
+if (props.startImage) {
+  start.value = files.value.findIndex(x => x.name === `${props.folder}/${props.startImage}`)
+  
+}
 
 const fetchURLs = async () => {
   console.log(files.value);
@@ -171,6 +183,7 @@ const emit = defineEmits(['close'])
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button,
 input[type='number'] {
+  appearance: none;
   -webkit-appearance: none;
   margin: 0;
   -moz-appearance: textfield !important;
