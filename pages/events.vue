@@ -8,8 +8,7 @@ const galleryOpen = ref(false)
 const startImage = ref(undefined)
 const folder = ref('')
 
-const events = {
-    nrutyadarpan: {
+const events = [{
         title: 'Nrutyadarpan',
         folder: 'nrutyadarpan',
         date: dayjs().subtract(1, 'year').fromNow(),
@@ -18,13 +17,21 @@ const events = {
             'WhatsApp Image 2024-04-08 at 12.19.35_ad595ffc.jpg',
             'WhatsApp Image 2024-04-08 at 12.19.35_ad595ffc.jpg'
         ]
-    }
-
-}
+    },
+    {
+        title: 'Others',
+        folder: 'images',
+        images: [
+            'IMG-20240226-WA0009.jpg',
+            'IMG-20240318-WA0001.jpg',
+            'IMG-20240318-WA0005.jpg'
+        ]
+    },
+    ]
 </script>
 
 <template>
-    <div class="events px-8 md:px-16 lg:px-16 xl:px-32">
+    <div class="events p-4 md:p-16 lg:p-16 xl:p-32">
         <Gallery v-if="galleryOpen" @close="galleryOpen = false" :folder="folder" :startImage="startImage" />
         <LandingTitle>Events</LandingTitle>
         
@@ -36,3 +43,8 @@ const events = {
 
     </div>
 </template>
+
+<style lang="stylus">
+.events
+    padding-top 0
+</style>

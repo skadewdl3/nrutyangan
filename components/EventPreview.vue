@@ -18,14 +18,23 @@ const { title, date, images, folder } = defineProps({
   }
 })
 
-const result = await useFetch('/api/imageURL', {
+
+
+
+const result = await $fetch('/api/imageURL', {
   method: 'POST',
   body: {
     names: images.map(name => `${folder}/${name}`),
   },
+  cache: 'no-cache',
 })
 
-const urls = result.data.value || []
+console.log(result);
+
+
+const urls = result || []
+console.log(urls);
+
 
 const emit = defineEmits(['openGallery'])
 </script>
@@ -40,17 +49,17 @@ const emit = defineEmits(['openGallery'])
       class="event__images grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4"
     >
       <div
-        class="event__image-left bg-gray-800 w-full h-full cursor-pointer"
+        class="event__image-left bg-gray-800 w-full cursor-pointer "
         @click="emit('openGallery', { start: images[0] })"
       >
-        <img class="h-full object-cover" :src="urls[0] || ''" loading="lazy" :alt="images[0] as string" />
+        <img  :src="urls[0] || ''" loading="lazy" :alt="images[0] as string" />
       </div>
       <div class="hidden event__image-right lg:grid grid-rows-2 gap-4">
         <div
           class="event__image-top bg-gray-800 w-full h-full cursor-pointer"
           @click="emit('openGallery', { start: images[1] })"
         >
-          <img class="h-full object-cover" :src="urls[1] || ''" loading="lazy" :alt="images[0] as string" />
+          <img class="w-full object-cover" :src="urls[1] || ''" loading="lazy" :alt="images[0] as string" />
         </div>
         <div
           class="event__image-bottom bg-gray-800 w-full h-full cursor-pointer"

@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     '/story': {
       ssr: true, // nuxt-aos doesnt play well with ssr
     },
+    '/events': {
+      prerender: true,
+    },
   },
   devtools: { enabled: true },
   modules: [
