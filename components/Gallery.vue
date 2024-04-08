@@ -101,7 +101,7 @@ const emit = defineEmits(['close'])
 <template>
   <Teleport to="body">
     <div
-      class="gallery w-full h-screen absolute top-0 left-0 bg-black/90 z-[100]"
+      class="gallery w-full h-screen fixed top-0 left-0 bg-black/90 z-[100]"
     >
     <button
         class="bg-black/60 rounded text-2xl p-4 active:translate-y-1 transition-all absolute top-0 right-0 text-white"
