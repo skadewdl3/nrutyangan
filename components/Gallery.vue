@@ -67,6 +67,8 @@ const fetchURLs = async () => {
 }
 
 watch(start, fetchURLs, { immediate: true })
+
+const emit = defineEmits(['close'])
 </script>
 
 <template>
@@ -74,6 +76,12 @@ watch(start, fetchURLs, { immediate: true })
     <div
       class="gallery w-full h-screen absolute top-0 left-0 bg-black/90 z-[100]"
     >
+    <button
+        class="bg-black/60 rounded text-2xl p-4 active:translate-y-1 transition-all absolute top-0 right-0 text-white"
+        @click="emit('close')"
+      >
+        <Icon name="material-symbols:close-rounded" />
+      </button>
       <div
         class="hidden md:flex gallery__controls fixed top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2 items-center justify-between text-white"
       >
