@@ -12,10 +12,10 @@ const items = [
     name: 'Our Events',
     link: '/events'
   },
-  {
-    name: 'Exams',
-    link: '/exams'
-  },
+  // {
+  //   name: 'Exams',
+  //   link: '/exams'
+  // },
   {
     name: 'Join Us',
     link: '#join'
