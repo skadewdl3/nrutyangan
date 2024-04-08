@@ -1,5 +1,18 @@
 <script setup lang="ts">
-const filesResponse = await useFetch<Array<string>>('/api/imageList')
+const props = defineProps({
+  folder: {
+    type: String,
+    required: false,
+    default: ''
+  }
+})
+
+const filesResponse = await useFetch<Array<string>>('/api/imageList', {
+  method: 'POST',
+  body: {
+    folder: props.folder
+  }
+})
 
 type FileType = {
   name: string
@@ -16,6 +29,8 @@ let start = ref(0)
 let count = 3
 
 const fetchURLs = async () => {
+  console.log(files.value);
+  
   let names = files.value
     .slice(
       start.value,

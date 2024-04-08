@@ -9,7 +9,7 @@ const galleryOpen = ref(false)
 
 <template>
     <div class="events px-32">
-        <Gallery v-if="galleryOpen" @close="galleryOpen = false" />
+        <Gallery v-if="galleryOpen" @close="galleryOpen = false" folder="nrutyadarpan" />
         <LandingTitle>Events</LandingTitle>
         <div class="event">
             <EventTitle :date="dayjs().subtract(1, 'year').fromNow()">Nrutyadarpan</EventTitle>    
