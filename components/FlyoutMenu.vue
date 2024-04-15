@@ -12,8 +12,6 @@ onMounted(() => {
 	setTimeout(() => {
 		shown.value = true
 	}, 500)
-	
-	console.log(props.items);
 })
 
 const close = () => {

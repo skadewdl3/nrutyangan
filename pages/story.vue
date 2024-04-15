@@ -58,7 +58,6 @@ let circleY: Ref<null | number[]> = ref(null)
 
 onMounted(() => {
   let x = Array.from(document.querySelectorAll('.story')).map(el => {
-    console.log()
     let rect = el.getBoundingClientRect()
     return rect.height / 2 + rect.top
   })

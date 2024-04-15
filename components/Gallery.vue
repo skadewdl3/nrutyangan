@@ -41,7 +41,6 @@ if (props.startImage) {
 }
 
 const fetchURLs = async () => {
-  console.log(files.value);
   
   let names = files.value
     .slice(
@@ -115,10 +114,7 @@ const emit = defineEmits(['close'])
         <button
           class="bg-black/60 rounded text-2xl p-4 active:translate-y-1 transition-all"
           @click="() => {
-              console.log(start);
             start = start == 0 ? files.length - 1 : start - 1
-              console.log(files.length - 1);
-            
           }"
         >
           <Icon name="material-symbols:arrow-back-rounded" />
@@ -143,10 +139,7 @@ const emit = defineEmits(['close'])
         <button
           class="md:hidden text-white bg-black/60 rounded text-xl p-2 active:translate-y-1 transition-all"
           @click="() => {
-              console.log(start);
             start = start == 0 ? files.length - 1 : start - 1
-              console.log(files.length - 1);
-            
           }"
         >
           <Icon name="material-symbols:arrow-back-rounded" />

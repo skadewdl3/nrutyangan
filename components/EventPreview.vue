@@ -29,12 +29,7 @@ const result = await $fetch('/api/imageURL', {
   cache: 'no-cache',
 })
 
-console.log(result);
-
-
 const urls = result || []
-console.log(urls);
-
 
 const emit = defineEmits(['openGallery'])
 </script>

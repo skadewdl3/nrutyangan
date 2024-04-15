@@ -26,9 +26,11 @@ const gurus = [
 </script>
 
 <template>
-    <div class="gurus grid grid-cols-3 place-items-center" >
-        <div v-for="(guru, index) in gurus" class="guru relative bg-no-repeat bg-center bg-contain" :class="`bg-[url('${guru.bg}')]`">
+    <LandingTitle>Gurus</LandingTitle>
+    <div class="gurus grid grid-cols-1 lg:grid-cols-3 place-items-center">
+        <div v-for="(guru, index) in gurus" class="guru relative bg-no-repeat bg-center bg-contain" :class="`bg-[url('~/assets/images/guru-bg-1.png')]`">
             <img :src="guru.image" :alt="`${guru.name} Image`">
+            <h2 class="text-center text-4xl font-bold mb-8 lg:mb-0">{{ guru.name }}</h2>
         </div>
     </div>
 </template>

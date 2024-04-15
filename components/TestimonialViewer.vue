@@ -16,8 +16,6 @@ const {testimonials, start, count} = defineProps({
 
 const emit = defineEmits(['prev', 'next'])
 
-console.log(testimonials.slice(start, start + count));
-
 </script>
 
 <template>

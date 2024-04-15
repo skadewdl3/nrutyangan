@@ -119,9 +119,6 @@ const goToBranches = () => {
 
     <TestimonialViewer class="block md:hidden" :testimonials="testimonials" :start="start" :count="1" @next="start++" @prev="start--" />
   </div>
-  <Footer />
-
-
   
 </template>
 

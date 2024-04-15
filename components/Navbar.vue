@@ -25,8 +25,6 @@ const items = [
 const flyout = ref(false)
 const temp = () => {
   flyout.value = !flyout.value
-  console.log('this ran', flyout.value);
-  
 }
 </script>
 
