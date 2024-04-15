@@ -4,10 +4,10 @@ const items = [
     name: 'Our Story',
     link: '/story'
   },
-  {
-    name: 'Gurus',
-    link: '/gurus'
-  },
+  // {
+  //   name: 'Gurus',
+  //   link: '/gurus'
+  // },
   {
     name: 'Our Events',
     link: '/events'
