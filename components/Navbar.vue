@@ -1,13 +1,17 @@
 <script setup lang="ts">
-const items = [
+const auth = useAuthState()
+console.log(auth);
+
+
+const items = computed(() => [
   {
     name: 'Our Story',
     link: '/story'
   },
-  // {
-  //   name: 'Gurus',
-  //   link: '/gurus'
-  // },
+  {
+    name: 'Gurus',
+    link: '/gurus'
+  },
   {
     name: 'Our Events',
     link: '/events'
@@ -19,8 +23,12 @@ const items = [
   {
     name: 'Join Us',
     link: '#join'
+  },
+  {
+    name: auth.status.value == 'authenticated' ? 'Sign Out' : 'Login',
+    link: auth.status.value == 'authenticated' ? (() => { auth.clearToken(); return '/auth' })() : '/auth'
   }
-]
+])
 
 const flyout = ref(false)
 const temp = () => {
