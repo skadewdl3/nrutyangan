@@ -1,17 +1,15 @@
 <script setup lang="ts">
 const auth = useAuthState()
-console.log(auth);
-
 
 const items = computed(() => [
   {
     name: 'Our Story',
     link: '/story'
   },
-  {
-    name: 'Gurus',
-    link: '/gurus'
-  },
+  // {
+  //   name: 'Gurus',
+  //   link: '/gurus'
+  // },
   {
     name: 'Our Events',
     link: '/events'
@@ -26,14 +24,17 @@ const items = computed(() => [
   },
   {
     name: auth.status.value == 'authenticated' ? 'Sign Out' : 'Login',
-    link: auth.status.value == 'authenticated' ? (() => { auth.clearToken(); return '/auth' })() : '/auth'
+    link: '/auth',
+    action: () => {
+      if (auth.status.value == 'authenticated') {
+        auth.clearToken()
+      }
+    
+    }
   }
 ])
 
 const flyout = ref(false)
-const temp = () => {
-  flyout.value = !flyout.value
-}
 </script>
 
 <template>
@@ -42,7 +43,7 @@ const temp = () => {
       Nrutyangan - Kathak Dance Academy
     </h1>
     <div class="navbar__right hidden lg:block">
-      <a v-for="{name, link} in items" class="ml-4 drop-shadow-md cursor-pointer" :href="link">{{ name }}</a>
+      <a v-for="{name, link, action} in items" class="ml-4 drop-shadow-md cursor-pointer" :href="link" @click="action && action()">{{ name }}</a>
     </div>
     <Teleport to="body">
       <Transition name="fade">
