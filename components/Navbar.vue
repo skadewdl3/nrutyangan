@@ -25,10 +25,13 @@
             <div class="navbar__logo" :class="{'navbar__logo--hovered': hovered}"><img src="~/assets/logo.png" class="w-12 sm:w-16 md:w-20 xl:w-24" /></div>
             <div class="navbar__text font-serif text-3xl hidden md:block">Nrutyangan</div>
         </div>
-        <div class="navbar__left font-heading hidden md:block">
-            <a class="py-1 ml-4 cursor-pointer relative" v-for="link in links">
+        <div class="navbar__left font-heading flex">
+           <a class="hidden md:block py-1 ml-4 cursor-pointer relative" v-for="link in links">
             <span class="navbar__link">{{ link.name }}</span>
             </a>
+            <span class="md:hidden">
+                <Icon class="text-2xl sm:text-3xl cursor-pointer" name="material-symbols:menu" />
+            </span>
         </div>
     </div>
 </template>
