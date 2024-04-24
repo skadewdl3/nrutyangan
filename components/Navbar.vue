@@ -16,6 +16,7 @@
     ]
 
     const logo = ref(null)
+    const store = useNavbarStore()
     const hovered = useElementHover(logo)
 </script>
 
@@ -29,11 +30,17 @@
            <a class="hidden md:block py-1 ml-4 cursor-pointer relative" v-for="link in links">
             <span class="navbar__link">{{ link.name }}</span>
             </a>
-            <span class="md:hidden">
-                <Icon class="text-2xl sm:text-3xl cursor-pointer" name="material-symbols:menu" />
+            <span class="md:hidden" @click="store.toggleFlyout()">
+                <Icon class="text-2xl sm:text-3xl cursor-pointer" :name="store.flyout ? 'material-symbols:close-rounded' : 'material-symbols:menu'" />
             </span>
         </div>
+        <Teleport to="body">
+            <Transition name="fade">
+                <Flyout v-if="store.flyout" :style="{'transition-delay': '0.25s'}" />
+            </Transition>
+        </Teleport>
     </div>
+
 </template>
 
 <style lang="stylus">
@@ -74,4 +81,14 @@
 		width 100%
 	100%
 		width 0
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

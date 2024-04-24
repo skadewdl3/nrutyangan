@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     'nuxt-aos',
     '@vueuse/nuxt',
+    '@pinia/nuxt',
   ],
   googleFonts: {
     families: {
