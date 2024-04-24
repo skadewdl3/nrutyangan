@@ -15,6 +15,12 @@ var generateStars = function(){
     }
 };
 
+watch([width, height], () => {
+    stars.value = []
+    generateStars()
+
+})
+
 onMounted(() => {
     generateStars();
 })
@@ -25,20 +31,21 @@ onMounted(() => {
         <div v-for="star in stars" :class="`absolute bg-white star star-type${star.type}`" :style="{top: star.y + 'px', left: star.x + 'px'}">
             
         </div>
-        <div class="hero__title text-right absolute top-1/2 right-[5%] -translate-y-1/2">
-            <h1 class="text-8xl font-serif">
-                Nrutyangan
-            </h1>
-            <h3 class="font-heading mt-8 text-2xl">Where passion meets elegance</h3>
+        <div class="hero__title w-full h-screen px-8 grid grid-cols-1 lg:grid-cols-2 text-right absolute top-1/2 -translate-y-1/2">
+            <img class="hidden lg:block self-end justify-self-center xl:h-[calc(100vh_-_200px)] h-[calc(100vh_-_300px)]" src="~/assets/hero.png" alt="">
+            <div class="place-self-center">
+                <h1 class="text-7xl xl:text-8xl font-serif">
+                    Nrutyangan
+                </h1>
+                <h3 class="font-heading mt-8 text-xl xl:text-2xl">Where passion meets elegance</h3>
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="stylus">
 .home
-    background-image url('~/assets/hero.png'), radial-gradient(circle at top left, rgba(accentColor, 0.6) 5%, transparent 30%),  radial-gradient(circle at bottom left, rgba(#2980b9, 0.6) 5%, transparent 50%)
-    background-position left bottom
-    background-size 30%, 100%, 100%
+    background radial-gradient(circle at top left, rgba(accentColor, 0.6) 5%, transparent 30%),  radial-gradient(circle at bottom left, rgba(#2980b9, 0.6) 5%, transparent 50%)
     background-repeat no-repeat
     backdrop-filter blur(10px)
 
@@ -46,34 +53,25 @@ onMounted(() => {
     width: 1px;
     height: 1px;
     border-radius: 2px;
-    -webkit-box-shadow: 0 0 1px 1px white;
-            box-shadow: 0 0 1px 1px white;
-    -webkit-animation: twinkle_one 3s ease-in-out infinite;
-        -moz-animation: twinkle_one 3s ease-in-out infinite;
-            -o-animation: twinkle_one 3s ease-in-out infinite;
-            animation: twinkle_one 3s ease-in-out infinite;
+    box-shadow: 0 0 1px 1px white;
+    animation: twinkle_one 3s ease-in-out infinite;
+    filter blur(1px)
 }
 .star-type2{
     width: 2px;
     height: 2px;
     border-radius: 2px;
-    -webkit-box-shadow: 0 0 2px 1px white;
-            box-shadow: 0 0 2px 1px white;
-    -webkit-animation: twinkle_two 12s ease-in-out infinite;
-        -moz-animation: twinkle_two 12s ease-in-out infinite;
-            -o-animation: twinkle_two 12s ease-in-out infinite;
-            animation: twinkle_two 12s ease-in-out infinite;
+    box-shadow: 0 0 2px 1px white;
+    animation: twinkle_two 12s ease-in-out infinite;
+    filter blur(1px)
 }
 .star-type3{
     width: 2px;
     height: 2px;
     border-radius: 2px;
-    -webkit-box-shadow: 0 0 2px 0 white;
-            box-shadow: 0 0 2px 0 white;
-    -webkit-animation: twinkle_three 7s ease-in-out infinite;
-        -moz-animation: twinkle_three 7s ease-in-out infinite;
-            -o-animation: twinkle_three 7s ease-in-out infinite;
-            animation: twinkle_three 7s ease-in-out infinite;
+    box-shadow: 0 0 2px 0 white;
+    animation: twinkle_three 7s ease-in-out infinite;
+    filter blur(1px)
 }
 
 @keyframes twinkle_one {
