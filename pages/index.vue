@@ -20,9 +20,21 @@ const navbarStore = useNavbarStore()
 </template>
 
 <style lang="stylus">
-delay = 0.25s
+gradients_to_bg(gds)
+    s = ''
+    for gd in gds
+        push(s, 'radial-gradient(circle at ' + gd.position + ', ' + rgba(gd.color, gd.opacity) + ' ' + gd.size + ', transparent ' + gd.transparent + ')') 
+    shift(s)
+    unquote(join(', ', s))
+
+gradients = { position: 'top left', color: accentColor, opacity: 0.6, size: 5%, transparent: 30% },
+            { position: '0% 50%', color: #2980b9, opacity: 0.6, size: 5%, transparent: 50% },
+            { position: '100% 100%', color: #2980b9, opacity: 0.6, size: 5%, transparent: 30% }
+
+
+
 .home
-    background radial-gradient(circle at top left, rgba(accentColor, 0.6) 5%, transparent 30%),  radial-gradient(circle at 0% 50%, rgba(#2980b9, 0.6) 5%, transparent 50%)
+    background gradients_to_bg(gradients)
     background-repeat no-repeat
     backdrop-filter blur(10px)
     animation zoomOut 0.5s ease-in-out forwards
