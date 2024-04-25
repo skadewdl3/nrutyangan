@@ -1,87 +1,20 @@
 <script setup lang="ts">
 const home = ref(null)
-const { width, height } = useElementSize(home)
-let stars = ref<Array<{ x: number; y: number; type: number }>>([])
-var generateStars = function () {
-  if (width.value < 1024) {
-    for (let i = 0; i < 50; i++) {
-      let x = Math.random()
-      let y = Math.random()
-      var type = Math.floor(Math.random() * 3 + 1)
-      stars.value.push({
-        x: width.value * x,
-        y: height.value * y,
-        type,
-      })
-    }
-  } else {
-    for (let i = 0; i < 50; i++) {
-      let x = Math.random()
-      let y = Math.random()
-      var type = Math.floor(Math.random() * 3 + 1)
-      stars.value.push({
-        x: width.value - (width.value / 2) * x,
-        y: height.value * y,
-        type,
-      })
-    }
-  }
-}
-
-const throttle = (func: (...argArr: any[]) => any, timeFrame: number) => {
-  var lastTime = 0
-  return (...args: any[]) => {
-    var now = new Date().getTime()
-    if (now - lastTime >= timeFrame) {
-      func(...args)
-      lastTime = now
-    }
-  }
-}
-
-watch(
-  [width, height],
-  throttle(() => {
-    stars.value = []
-    generateStars()
-  }, 500)
-)
-
-onMounted(() => {
-  generateStars()
-})
 
 const navbarStore = useNavbarStore()
 </script>
 
 <template>
-  <div ref="home" class="home w-full h-screen relative transition-all" :class="{'home--zoomed': navbarStore.flyout}">
+  <div ref="home" class="home transition-all" :class="{'home--zoomed': navbarStore.flyout}">
     <!-- Twinkling Stars -->
-    <div class="stars">
-      <div
-        v-for="star in stars"
-        :class="`absolute bg-white star star-type${star.type}`"
-        :style="{ top: star.y + 'px', left: star.x + 'px' }"
-      ></div>
-    </div>
+    <Stars span="full" />
+
     <div class="transition-all home-content" :class="{ 'home-content--hidden': navbarStore.flyout }">
-      <div
-        class="hero__title w-full h-screen px-8 grid grid-cols-1 lg:grid-cols-2 absolute top-1/2 -translate-y-1/2"
-      >
-        <img
-          class="hidden lg:block self-end justify-self-center xl:h-[calc(100vh_-_200px)] h-[calc(100vh_-_300px)]"
-          src="~/assets/hero.png"
-          alt=""
-        />
-        <div class="place-self-center text-center lg:text-right">
-          <h1 class="text-5xl md:text-7xl xl:text-8xl font-serif">
-            Nrutyangan
-          </h1>
-          <h3 class="font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl">
-            Where passion meets elegance
-          </h3>
-        </div>
-      </div>
+      
+      <Hero />
+      <!-- <Branches / -->
+
+      <div class="branches h-screen">Branches</div>
     </div>
   </div>
 </template>
@@ -89,13 +22,14 @@ const navbarStore = useNavbarStore()
 <style lang="stylus">
 delay = 0.25s
 .home
-    background radial-gradient(circle at top left, rgba(accentColor, 0.6) 5%, transparent 30%),  radial-gradient(circle at bottom left, rgba(#2980b9, 0.6) 5%, transparent 50%)
+    background radial-gradient(circle at top left, rgba(accentColor, 0.6) 5%, transparent 30%),  radial-gradient(circle at 0% 50%, rgba(#2980b9, 0.6) 5%, transparent 50%)
     background-repeat no-repeat
     backdrop-filter blur(10px)
     animation zoomOut 0.5s ease-in-out forwards
 
     &--zoomed
       animation zoomIn 0.5s ease-in-out forwards
+
 
 .home-content
     animation fadeIn 0.5s ease-in-out both
