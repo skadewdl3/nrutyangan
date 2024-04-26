@@ -12,7 +12,7 @@ const navbarStore = useNavbarStore()
     <div class="transition-all home-content" :class="{ 'home-content--hidden': navbarStore.flyout }">
       
       <Hero />
-      <Branches />
+      <Announcements />
       <Footer />
 
     </div>
