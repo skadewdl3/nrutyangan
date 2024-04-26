@@ -1,7 +1,7 @@
 <template>
-<div class="hero__title h-screen grid grid-cols-1 lg:grid-cols-2">
+<div class="hero__title h-screen grid grid-cols-1 lg:grid-cols-2 z-[1] relative">
     <img
-        class="hidden lg:block self-end justify-self-center xl:h-[calc(100vh_-_200px)] h-[calc(100vh_-_300px)]"
+        class="hidden lg:block self-end justify-self-center xl:h-[calc(100vh_-_200px)] h-[calc(100vh_-_300px)] relative"
         src="~/assets/hero.png"
         alt=""
     />
