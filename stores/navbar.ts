@@ -17,7 +17,7 @@ export const useNavbarStore = defineStore('navbar', () => {
       link: '/branches',
     },
     {
-      name: 'Events',
+      name: 'Our Events',
       link: '/events',
     },
     {
