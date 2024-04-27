@@ -2,6 +2,26 @@
 
 import AnnouncementSchema from '../schemas/Announcement'
 import { useDB } from '~/composables/useDB'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
+dayjs.extend(customParseFormat)
+
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
 
 export default defineEventHandler(async event => {
   const db = await useDB('nrutyangan')
@@ -12,7 +32,16 @@ export default defineEventHandler(async event => {
     'announcements'
   )
 
-  let announcements = await Announcement.find({}).sort({ date: -1 }).exec()
+  let announcements = (
+    await Announcement.find({}).sort({ date: -1 }).exec()
+  ).map((announcement: any) => {
+    const date = dayjs(announcement.date).utc()
+    return {
+      ...announcement.toObject(),
+      month: months[date.month()],
+      date: date.date() + 1,
+    }
+  })
 
   return {
     announcements,

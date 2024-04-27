@@ -3,11 +3,7 @@ const home = ref(null)
 const navbarStore = useNavbarStore()
 
 onMounted(() => {
-  console.log(navbarStore.joinScroll)
-
   if (navbarStore.joinScroll) {
-    console.log(document.querySelector('.footer'))
-
     setTimeout(() => {
       // @ts-ignore
       document.querySelector('.footer').scrollIntoView()

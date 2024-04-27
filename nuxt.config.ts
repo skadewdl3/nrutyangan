@@ -3,6 +3,9 @@
 import { stylusVars } from './tailwind.config'
 
 export default defineNuxtConfig({
+  routeRules: {
+    '/': { isr: true },
+  },
   // routeRules: {
   //   "/": {
   //     prerender: true,

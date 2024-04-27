@@ -23,9 +23,6 @@ if (props.multiline) {
         sizer.setAttribute('data-value', model.value as string)
     })
 }
-watch(focused, () => {
-    console.log(focused.value)
-})
 </script>
 
 <template>

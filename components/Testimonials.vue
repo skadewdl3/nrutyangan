@@ -1,12 +1,5 @@
 <script setup lang="ts">
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import dayjs from 'dayjs'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-import utc from 'dayjs/plugin/utc'
-import timeToNow from 'dayjs/plugin/relativeTime'
-dayjs.extend(timeToNow)
-dayjs.extend(utc)
-dayjs.extend(customParseFormat)
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
@@ -14,33 +7,18 @@ const md = breakpoints.greaterOrEqual('md')
 const xl = breakpoints.greaterOrEqual('xl')
 
 
-
-const months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-  ]
-
 let { data } = await useFetch<any>('/api/testimonials', {
     method: 'GET'
 })
 
-
-
-
-let testimonials = data.value.testimonials.map((testimonial: any) => {
-    return {
-        ...testimonial,
-        date: dayjs(new Date(testimonial.date))
-    }
-})
-
+let testimonials = data.value.testimonials
 
 const count = computed(() => {
     if (xl.value) return 3
     if (md.value) return 2
     return 1
 })
-const start = ref(testimonials.length > 3 ? 3 : 0)
+const start = ref(0)
 
 const prev = () => {
     if (start.value > 0) {
@@ -66,7 +44,7 @@ const next = () => {
                 <div class="testimonial p-8 rounded" v-for="item in testimonials.slice(start, start + count)">
                     <div class="testimonial-header flex items-center justify-between">
                         <Stars :count="item.stars" />
-                        <span>{{ item.date.fromNow() }}</span>
+                        <span>{{ item.date }}</span>
                     </div>
                     <div class="testimonial-content">{{ item.content }}</div>
                     <div class="testimonial-author capatalize font-bold text-pink-400">- {{ item.author }} </div>

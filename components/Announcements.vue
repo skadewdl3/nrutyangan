@@ -8,9 +8,7 @@ dayjs.extend(customParseFormat)
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
-const sm = breakpoints.greaterOrEqual('sm')
 const md = breakpoints.greaterOrEqual('md')
-const lg = breakpoints.greaterOrEqual('lg')
 const xl = breakpoints.greaterOrEqual('xl')
 
 
@@ -24,12 +22,7 @@ let { data } = await useFetch<any>('/api/announcements', {
     method: 'GET'
 })
 
-let announcements = data.value.announcements.map((announcement: any) => {
-    return {
-        ...announcement,
-        date: dayjs(new Date(announcement.date))
-    }
-})
+let announcements = data.value.announcements
 
 
 const count = computed(() => {
@@ -68,8 +61,8 @@ const next = () => {
                     <div class="announcement-header flex items-center justify-between">
                         <h2 class="announcement-title font-bold font-heading text-2xl">{{ item.title }}</h2>
                         <div class="announcement-date text-center text-sm text-gray-500 flex items-center justify-between flex-col bg-white font-bold">
-                            <span class="bg-red-800 uppercase p-2 text-white font-heading">{{ months[item.date.month()] }}</span>
-                            <span class="pb-2 text-black font-serif">{{ item.date.date() + 1 }}</span>
+                            <span class="bg-red-800 uppercase p-2 text-white font-heading">{{ item.month }}</span>
+                            <span class="pb-2 text-black font-serif">{{ item.date }}</span>
                         </div>
 
                     </div>

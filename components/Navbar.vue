@@ -1,28 +1,6 @@
 <script setup lang="ts">
 const navbarStore = useNavbarStore()
 
-const links: Array<{
-  name: string
-  link?: string
-  action?: () => void
-}> = [
-  {
-    name: 'Our Founder',
-    link: '/founder',
-  },
-  {
-    name: 'Join Us',
-    action: () => {
-      navbarStore.setJoinScroll(true)
-      navigateTo('/')
-    },
-  },
-  {
-    name: 'Login', // Change this as per auth status
-    action: () => {}, // Sign out if logged in,
-    link: '/auth',
-  },
-]
 
 const logo = ref(null)
 const store = useNavbarStore()
@@ -44,7 +22,7 @@ const hovered = useElementHover(logo)
     </div>
     <div class="navbar__left font-heading flex">
       <a
-        v-for="link in links"
+        v-for="link in navbarStore.items"
         class="hidden md:block py-1 ml-4 cursor-pointer relative"
         :href="link.link"
         @click="link.action"
