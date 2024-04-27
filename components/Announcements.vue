@@ -20,11 +20,11 @@ const months = [
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ]
 
-let {announcements}: {announcements: Array<{title: string, date: any, description: string}>} = await $fetch('/api/announcements', {
+let { data } = await useFetch<any>('/api/announcements', {
     method: 'GET'
 })
 
-announcements = announcements.map((announcement: any) => {
+let announcements = data.value.announcements.map((announcement: any) => {
     return {
         ...announcement,
         date: dayjs(new Date(announcement.date))
@@ -37,6 +37,19 @@ const count = computed(() => {
     if (md.value) return 2
     return 1
 })
+
+const start = ref(0)
+
+const prev = () => {
+    if (start.value > 0) {
+        start.value -= 1
+    }
+}
+const next = () => {
+    if (start.value + count.value < announcements.length) {
+        start.value += 1
+    }
+}
 </script>
 
 <template>
@@ -49,7 +62,7 @@ const count = computed(() => {
 
             <div class="announcements-content w-[90%] lg:w-[80%] xl:w-[70%] mx-auto grid-cols-1 grid md:grid-cols-2 xl:grid-cols-3 gap-8 text-black mt-16">
 
-                <div v-for="item in announcements.slice(0, count)" class="announcement flex flex-col px-8 py-4">
+                <div v-for="item in announcements.slice(start, start + count)" class="announcement flex flex-col px-8 py-4">
                     
                     
                     <div class="announcement-header flex items-center justify-between">
@@ -65,6 +78,13 @@ const count = computed(() => {
                 </div>
 
             </div>
+
+            <div class="flex items-center justify-center w-full" v-if="count != announcements.length">
+              <Icon name="material-symbols-light:chevron-left" class="text-4xl cursor-pointer" :class="{'text-gray-300':!(start > 0)}"  @click="prev" />
+            <span v-if="count != 1" class="mx-8">{{ start + 1 }} - {{ start + count }} / {{ announcements.length }}</span>
+            <span v-else>{{ start + 1 }} / {{ announcements.length }}</span>
+              <Icon name="material-symbols-light:chevron-right" class="text-4xl cursor-pointer" :class="{'text-gray-300': !(start + count < announcements.length)}" @click="next"/>
+        </div>
         </div>
     </div>
 </template>

@@ -31,7 +31,7 @@ watch(() => navbarStore.joinScroll, () => {
     :class="{ 'home--zoomed': navbarStore.flyout }"
   >
     <!-- Twinkling Stars -->
-    <Stars span="full" />
+    <StarField span="full" />
 
     <div
       class="transition-all home-content"

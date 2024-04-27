@@ -12,7 +12,7 @@ export default defineEventHandler(async event => {
     'announcements'
   )
 
-  let announcements = await Announcement.find({})
+  let announcements = await Announcement.find({}).sort({ date: -1 }).exec()
 
   return {
     announcements,

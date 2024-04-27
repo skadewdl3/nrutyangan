@@ -3,14 +3,14 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import utc from 'dayjs/plugin/utc'
+import timeToNow from 'dayjs/plugin/relativeTime'
+dayjs.extend(timeToNow)
 dayjs.extend(utc)
 dayjs.extend(customParseFormat)
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
-const sm = breakpoints.greaterOrEqual('sm')
 const md = breakpoints.greaterOrEqual('md')
-const lg = breakpoints.greaterOrEqual('lg')
 const xl = breakpoints.greaterOrEqual('xl')
 
 
@@ -20,11 +20,14 @@ const months = [
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ]
 
-let {announcements: testimonials}: {announcements: Array<{title: string, date: any, description: string}>} = await $fetch('/api/announcements', {
+let { data } = await useFetch<any>('/api/testimonials', {
     method: 'GET'
 })
 
-testimonials = testimonials.map((testimonial: any) => {
+
+
+
+let testimonials = data.value.testimonials.map((testimonial: any) => {
     return {
         ...testimonial,
         date: dayjs(new Date(testimonial.date))
@@ -37,6 +40,18 @@ const count = computed(() => {
     if (md.value) return 2
     return 1
 })
+const start = ref(testimonials.length > 3 ? 3 : 0)
+
+const prev = () => {
+    if (start.value > 0) {
+        start.value -= 1
+    }
+}
+const next = () => {
+    if (start.value + count.value < testimonials.length) {
+        start.value += 1
+    }
+}
 </script>
 
 <template>
@@ -48,23 +63,23 @@ const count = computed(() => {
             </div>
 
             <div class="testimonials-content w-[90%] lg:w-[80%] xl:w-[70%] mx-auto grid-cols-1 grid md:grid-cols-2 xl:grid-cols-3 gap-8 text-black mt-16">
-
-                <div v-for="item in testimonials.slice(0, count)" class="testimonial flex flex-col px-8 py-4">
-                    
-                    
+                <div class="testimonial p-8 rounded" v-for="item in testimonials.slice(start, start + count)">
                     <div class="testimonial-header flex items-center justify-between">
-                        <h2 class="testimonial-title font-bold font-heading text-2xl">{{ item.title }}</h2>
-                        <div class="testimonial-date text-center text-sm text-gray-500 flex items-center justify-between flex-col bg-white font-bold">
-                            <span class="bg-red-800 uppercase p-2 text-white font-heading">{{ months[item.date.month()] }}</span>
-                            <span class="pb-2 text-black font-serif">{{ item.date.date() + 1 }}</span>
-                        </div>
-
+                        <Stars :count="item.stars" />
+                        <span>{{ item.date.fromNow() }}</span>
                     </div>
-
-                    <p class="testimonials-card-content--text text-xl font-thin">{{ item.description }}</p>
+                    <div class="testimonial-content">{{ item.content }}</div>
+                    <div class="testimonial-author capatalize font-bold text-pink-400">- {{ item.author }} </div>
                 </div>
-
             </div>
+            <div class="testimonials-controls">
+                <div class="flex items-center justify-center w-full" v-if="count != testimonials.length">
+                  <Icon name="material-symbols-light:chevron-left" class="text-4xl cursor-pointer" :class="{'text-gray-300':!(start > 0)}" @click="prev"  />
+                <span v-if="count != 1" class="mx-8">{{ start + 1 }} - {{ start + count }} / {{ testimonials.length }}</span>
+                <span v-else>{{ start + 1 }} / {{ testimonials.length }}</span>
+                  <Icon name="material-symbols-light:chevron-right" class="text-4xl cursor-pointer" :class="{'text-gray-300': !(start + count < testimonials.length)}" @click="next" />
+            </div>
+        </div>
         </div>
     </div>
 </template>
@@ -72,7 +87,7 @@ const count = computed(() => {
 <style lang="stylus">
 
 .testimonial
-    background rgba(#fff, 0.5)
+    background rgba(#fff, 0.7)
     backdrop-filter blur(5px)
     
 </style>
