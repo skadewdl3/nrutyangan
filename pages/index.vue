@@ -39,6 +39,7 @@ watch(() => navbarStore.joinScroll, () => {
     >
       <Hero />
       <Announcements />
+      <Testimonials />
       <Footer />
     </div>
   </div>
@@ -52,9 +53,10 @@ gradients_to_bg(gds)
     shift(s)
     unquote(join(', ', s))
 
-gradients = { position: 'top left', color: accentColor, opacity: 0.6, size: 5%, transparent: 30% },
-            { position: '0% 50%', color: accentBlue, opacity: 0.6, size: 5%, transparent: 50% },
-            { position: '100% 100%', color: accentBlue, opacity: 0.6, size: 5%, transparent: 30% }
+gradients = { position: 'top left', color: accentColor, opacity: 0.6, size: 5%, transparent: 20% },
+            { position: '100% 40%', color: accentBlue, opacity: 0.6, size: 5%, transparent: 40% },
+            { position: '50% 65%', color: accentColor, opacity: 0.6, size: 5%, transparent: 30% },
+            { position: '50% 100%', color: accentBlue, opacity: 0.6, size: 2%, transparent: 20% }
 
 
 .home
