@@ -1,18 +1,18 @@
 import mongoose from 'mongoose'
 
 export default new mongoose.Schema({
-  firstName: {
+  title: {
     type: String,
     trim: true,
     required: true,
   },
-  lastName: {
+  description: {
     type: String,
     trim: true,
     required: true,
   },
-  teacher_id: {
-    type: String,
-    required: false,
+  date: {
+    type: Date,
+    required: true,
   },
 })

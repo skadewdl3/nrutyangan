@@ -21,12 +21,4 @@ export default new mongoose.Schema({
   hashedPassword: {
     type: String,
   },
-  course: {
-    type: String,
-    required: false,
-  },
-  dob: {
-    type: Date,
-    required: true,
-  },
 })

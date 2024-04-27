@@ -6,18 +6,12 @@ export default new mongoose.Schema({
     trim: true,
     required: true,
   },
-  location: {
-    type: String,
-    trim: true,
+  date: {
+    type: Date,
     required: true,
   },
-  course_id: {
+  coverPhoto: {
     type: String,
-    trim: true,
     required: true,
-  },
-  teacher_id: {
-    type: Array,
-    required: false,
   },
 })

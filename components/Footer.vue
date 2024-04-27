@@ -20,7 +20,7 @@ const socials = [
 </script>
 
 <template>
-    <div class="footer">
+    <div class="footer join">
         <div class="contact-form mx-auto mb-16 md:mt-0">
             <div class="branches__title text-center">
                 <h1 class="branches__title--main text-4xl md:text-6xl font-serif">Contact Us</h1>

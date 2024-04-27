@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const navbarStore = useNavbarStore()
+
 const links: Array<{
   name: string
   link?: string
@@ -10,8 +12,10 @@ const links: Array<{
   },
   {
     name: 'Join Us',
-    action: () => document.querySelector('.footer')?.scrollIntoView(), // Scroll to footer
-    link: undefined,
+    action: () => {
+      navbarStore.setJoinScroll(true)
+      navigateTo('/')
+    },
   },
   {
     name: 'Login', // Change this as per auth status

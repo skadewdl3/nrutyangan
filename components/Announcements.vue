@@ -2,6 +2,8 @@
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
 dayjs.extend(customParseFormat)
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
@@ -11,8 +13,6 @@ const md = breakpoints.greaterOrEqual('md')
 const lg = breakpoints.greaterOrEqual('lg')
 const xl = breakpoints.greaterOrEqual('xl')
 
-console.log(sm.value, md.value, lg.value, xl.value);
-
 
 
 const months = [
@@ -20,25 +20,17 @@ const months = [
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ]
 
-const announcements = [
-    {
-        title: 'New Classes',
-        date: dayjs('01-09-2021', 'DD-MM-YYYY'),
-        content: 'We are excited to announce the launch of our new classes! Join us in exploring new dance styles and techniques. Register now and get a special discount on your first class.',
-    },
-    {
-        title: 'Workshops',
-        date: dayjs('15-09-2021', 'DD-MM-YYYY'),
-        content: 'Join us for our upcoming workshops and masterclasses. Learn from the best instructors and take your dance skills to the next level. Limited slots available, so book your spot now!',
-    },
-    {
-        title: 'Special Offers',
-        date: dayjs('01-08-2021', 'DD-MM-YYYY'),
-        content: 'Avail of our special offers and promotions this month. Get discounts on class packages, exclusive access to events, and freebies when you refer a friend. Don\'t miss out on these amazing deals!',
-    },
-]
+let {announcements}: {announcements: Array<{title: string, date: any, description: string}>} = await $fetch('/api/announcements', {
+    method: 'GET'
+})
 
-console.log(announcements[0].date);
+announcements = announcements.map((announcement: any) => {
+    return {
+        ...announcement,
+        date: dayjs(new Date(announcement.date))
+    }
+})
+
 
 const count = computed(() => {
     if (xl.value) return 3
@@ -55,7 +47,7 @@ const count = computed(() => {
                 <h3 class="announcements__title--sub font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl">Stay updated with the latest news, events, and important announcements. Be the first to know about new classes, workshops, and special offers.</h3>
             </div>
 
-            <div class="announcements-content w-[90%] lg:w-[80%] xl:w-[60%] mx-auto grid-cols-1 grid md:grid-cols-2 xl:grid-cols-3 gap-8 text-black mt-16">
+            <div class="announcements-content w-[90%] lg:w-[80%] xl:w-[70%] mx-auto grid-cols-1 grid md:grid-cols-2 xl:grid-cols-3 gap-8 text-black mt-16">
 
                 <div v-for="item in announcements.slice(0, count)" class="announcement flex flex-col px-8 py-4">
                     
@@ -69,7 +61,7 @@ const count = computed(() => {
 
                     </div>
 
-                    <p class="announcements-card-content--text text-xl font-thin">{{ item.content }}</p>
+                    <p class="announcements-card-content--text text-xl font-thin">{{ item.description }}</p>
                 </div>
 
             </div>

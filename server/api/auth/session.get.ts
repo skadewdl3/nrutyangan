@@ -1,14 +1,9 @@
 import jwt from 'jsonwebtoken'
 import { useDB } from '~/composables/useDB'
-import CourseSchema from '~/server/schemas/Course'
-import StudentSchema from '~/server/schemas/Student'
+import UserSchema from '~/server/schemas/User'
 
 export default defineEventHandler(async event => {
   const cookie = getCookie(event, 'auth:token')
-  // setCookie(event, 'auth:token', cookie as string, {
-  //   maxAge: 60 * 60 * 24,
-  //   sameSite: 'lax',
-  // })
   const config = useRuntimeConfig()
 
   const verification: any = jwt.verify(
@@ -16,18 +11,9 @@ export default defineEventHandler(async event => {
     config.public.JWT_SECRET
   )
 
-  const Student = (await useDB('students')).model(
-    'Student',
-    StudentSchema,
-    'students'
-  )
-  const Course = (await useDB('coursedetails')).model(
-    'Course',
-    CourseSchema,
-    'courses'
-  )
+  const User = (await useDB('users')).model('User', UserSchema, 'users')
 
-  let found = await Student.findOne({ email: verification.email }).catch(err =>
+  let found = await User.findOne({ email: verification.email }).catch(err =>
     console.log(err)
   )
 
@@ -35,8 +21,6 @@ export default defineEventHandler(async event => {
     return {
       status: 'unauthenaticated',
     }
-
-  let course = await Course.findOne({ course_id: found.course })
 
   if (found)
     return {
@@ -47,7 +31,6 @@ export default defineEventHandler(async event => {
         firstName: found?.firstName,
         lastName: found?.lastName,
         _id: found?._id,
-        course,
       },
     }
   else

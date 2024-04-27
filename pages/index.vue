@@ -1,20 +1,45 @@
 <script setup lang="ts">
 const home = ref(null)
-
 const navbarStore = useNavbarStore()
+
+onMounted(() => {
+  console.log(navbarStore.joinScroll)
+
+  if (navbarStore.joinScroll) {
+    console.log(document.querySelector('.footer'))
+
+    setTimeout(() => {
+      // @ts-ignore
+      document.querySelector('.footer').scrollIntoView()
+       navbarStore.setJoinScroll(false)
+    }, 1000)
+  }
+})
+
+watch(() => navbarStore.joinScroll, () => {
+  if (navbarStore.joinScroll) {
+    (document.querySelector('.footer') as HTMLElement).scrollIntoView({ behavior: 'smooth' })
+    navbarStore.setJoinScroll(false)
+  }
+})
 </script>
 
 <template>
-  <div ref="home" class="home transition-all relative" :class="{'home--zoomed': navbarStore.flyout}">
+  <div
+    ref="home"
+    class="home transition-all relative"
+    :class="{ 'home--zoomed': navbarStore.flyout }"
+  >
     <!-- Twinkling Stars -->
     <Stars span="full" />
 
-    <div class="transition-all home-content" :class="{ 'home-content--hidden': navbarStore.flyout }">
-      
+    <div
+      class="transition-all home-content"
+      :class="{ 'home-content--hidden': navbarStore.flyout }"
+    >
       <Hero />
       <Announcements />
       <Footer />
-
     </div>
   </div>
 </template>
@@ -23,7 +48,7 @@ const navbarStore = useNavbarStore()
 gradients_to_bg(gds)
     s = ''
     for gd in gds
-        push(s, 'radial-gradient(circle at ' + gd.position + ', ' + rgba(gd.color, gd.opacity) + ' ' + gd.size + ', transparent ' + gd.transparent + ')') 
+        push(s, 'radial-gradient(circle at ' + gd.position + ', ' + rgba(gd.color, gd.opacity) + ' ' + gd.size + ', transparent ' + gd.transparent + ')')
     shift(s)
     unquote(join(', ', s))
 

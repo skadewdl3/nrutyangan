@@ -6,7 +6,7 @@
         alt=""
     />
     <div class="place-self-center text-center lg:text-right">
-        <h1 class="text-5xl md:text-7xl xl:text-8xl font-serif">
+        <h1 class="navbar-visibility-anchor text-5xl md:text-7xl xl:text-8xl font-serif">
         Nrutyangan
         </h1>
         <h3 class="font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl">

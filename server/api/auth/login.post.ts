@@ -1,16 +1,16 @@
 import { useDB } from '~/composables/useDB'
-import StudentSchema from '~/server/schemas/Student'
+import UserSchema from '~/server/schemas/User'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 export default defineEventHandler(async event => {
-  const db = await useDB('students')
+  const db = await useDB('users')
   const body = await readBody(event)
   const runtimeConfig = useRuntimeConfig()
 
-  const Student = db.model('Student', StudentSchema)
+  const User = db.model('User', UserSchema, 'admins')
 
-  let found = (await Student.findOne({ email: body.email }).catch(err =>
+  let found = (await User.findOne({ email: body.email }).catch(err =>
     console.log(err)
   )) as any
 
