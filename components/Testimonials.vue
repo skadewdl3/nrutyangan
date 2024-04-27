@@ -2,7 +2,6 @@
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
-
 const md = breakpoints.greaterOrEqual('md')
 const xl = breakpoints.greaterOrEqual('xl')
 

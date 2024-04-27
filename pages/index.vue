@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const home = ref(null)
 const navbarStore = useNavbarStore()
 
 onMounted(() => {
@@ -22,16 +21,16 @@ watch(() => navbarStore.joinScroll, () => {
 
 <template>
   <div
-    ref="home"
-    class="home transition-all relative"
-    :class="{ 'home--zoomed': navbarStore.flyout }"
+    ref="index"
+    class="index transition-all relative"
+    :class="{ 'index--zoomed': navbarStore.flyout }"
   >
     <!-- Twinkling Stars -->
     <StarField span="full" />
 
     <div
-      class="transition-all home-content"
-      :class="{ 'home-content--hidden': navbarStore.flyout }"
+      class="transition-all index-content"
+      :class="{ 'index-content--hidden': navbarStore.flyout }"
     >
       <Hero />
       <Announcements />
@@ -55,7 +54,7 @@ gradients = { position: 'top left', color: accentColor, opacity: 0.6, size: 5%, 
             { position: '50% 100%', color: accentBlue, opacity: 0.6, size: 2%, transparent: 20% }
 
 
-.home
+.index
     background gradients_to_bg(gradients)
     background-repeat no-repeat
     backdrop-filter blur(10px)
@@ -65,7 +64,7 @@ gradients = { position: 'top left', color: accentColor, opacity: 0.6, size: 5%, 
       animation zoomIn 0.5s ease-in-out forwards
 
 
-.home-content
+.index-content
     animation fadeIn 0.5s ease-in-out both
     animation-delay 0.5s
     &--hidden

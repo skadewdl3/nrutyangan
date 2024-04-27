@@ -10,6 +10,10 @@ export default new mongoose.Schema({
     type: Date,
     required: true,
   },
+  id: {
+    type: String,
+    required: true,
+  },
   coverPhoto: {
     type: String,
     required: true,

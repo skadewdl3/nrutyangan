@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
+const props = defineProps({
+    simple: {
+        type: Boolean,
+        default: false
+    }
+})
 
 const firstName = ref('')
 const lastName = ref('')
@@ -21,7 +27,7 @@ const socials = [
 
 <template>
     <div class="footer join">
-        <div class="contact-form mx-auto mb-16 md:mt-0">
+        <div class="contact-form mx-auto mb-16 md:mt-0" v-if="!props.simple">
             <div class="branches__title text-center">
                 <h1 class="branches__title--main text-4xl md:text-6xl font-serif">Contact Us</h1>
                 <h3 class="branches__title--sub font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl">We would love to hear from you!</h3>
