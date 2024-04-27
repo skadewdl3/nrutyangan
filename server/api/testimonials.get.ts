@@ -1,8 +1,8 @@
 import TestimonialSchema from '../schemas/Testimonial'
 import { useDB } from '~/composables/useDB'
 import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timeToNow from 'dayjs/plugin/relativeTime'
+import utc from 'dayjs/plugin/utc.js'
+import timeToNow from 'dayjs/plugin/relativeTime.js'
 dayjs.extend(timeToNow)
 dayjs.extend(utc)
 
