@@ -1,46 +1,69 @@
 <script setup lang="ts">
-    const links = [
-        {
-            name: 'Our Founder',
-            link: '/founder'
-        },
-        {
-            name: 'Join Us',
-            action: () => {} // Scroll to footer
-        },
-        {
-            name: 'Login', // Change this as per auth status
-            action: () => {}, // Sign out if logged in,
-            link: '/auth'
-        }
-    ]
+const links: Array<{
+  name: string
+  link?: string
+  action?: () => void
+}> = [
+  {
+    name: 'Our Founder',
+    link: '/founder',
+  },
+  {
+    name: 'Join Us',
+    action: () => document.querySelector('.footer')?.scrollIntoView(), // Scroll to footer
+    link: undefined,
+  },
+  {
+    name: 'Login', // Change this as per auth status
+    action: () => {}, // Sign out if logged in,
+    link: '/auth',
+  },
+]
 
-    const logo = ref(null)
-    const store = useNavbarStore()
-    const hovered = useElementHover(logo)
+const logo = ref(null)
+const store = useNavbarStore()
+const hovered = useElementHover(logo)
 </script>
 
 <template>
-    <div class="navbar w-full flex items-center justify-between p-4 md:px-8">
-        <div ref="logo" class="navbar__right flex items-center justify-start cursor-pointer hover:text-white transition-all">
-            <div class="navbar__logo" :class="{'navbar__logo--hovered': hovered}"><img src="~/assets/logo.png" class="w-12 sm:w-16 md:w-20 xl:w-24" /></div>
-            <div class="navbar__text font-serif text-3xl hidden md:block">Nrutyangan</div>
-        </div>
-        <div class="navbar__left font-heading flex">
-           <a class="hidden md:block py-1 ml-4 cursor-pointer relative" v-for="link in links">
-            <span class="navbar__link">{{ link.name }}</span>
-            </a>
-            <span class="md:hidden" @click="store.toggleFlyout()">
-                <Icon class="text-2xl sm:text-3xl cursor-pointer" :name="store.flyout ? 'material-symbols:close-rounded' : 'material-symbols:menu'" />
-            </span>
-        </div>
-        <Teleport to="body">
-            <Transition name="fade">
-                <Flyout v-if="store.flyout" :style="{'transition-delay': '0.25s'}" />
-            </Transition>
-        </Teleport>
+  <div class="navbar w-full flex items-center justify-between p-4 md:px-8">
+    <div
+      ref="logo"
+      class="navbar__right flex items-center justify-start cursor-pointer hover:text-white transition-all"
+    >
+      <div class="navbar__logo" :class="{ 'navbar__logo--hovered': hovered }">
+        <img src="~/assets/logo.png" class="w-12 sm:w-16 md:w-20 xl:w-24" />
+      </div>
+      <div class="navbar__text font-serif text-3xl hidden md:block">
+        Nrutyangan
+      </div>
     </div>
-
+    <div class="navbar__left font-heading flex">
+      <a
+        v-for="link in links"
+        class="hidden md:block py-1 ml-4 cursor-pointer relative"
+        :href="link.link"
+        @click="link.action"
+      >
+        <span class="navbar__link">{{ link.name }}</span>
+      </a>
+      <span class="md:hidden" @click="store.toggleFlyout()">
+        <Icon
+          class="text-2xl sm:text-3xl cursor-pointer"
+          :name="
+            store.flyout
+              ? 'material-symbols:close-rounded'
+              : 'material-symbols:menu'
+          "
+        />
+      </span>
+    </div>
+    <Teleport to="body">
+      <Transition name="fade">
+        <Flyout v-if="store.flyout" :style="{ 'transition-delay': '0.25s' }" />
+      </Transition>
+    </Teleport>
+  </div>
 </template>
 
 <style lang="stylus">
@@ -53,7 +76,7 @@
 .navbar__link
     transition all
     border solid 2px transparent
-    
+
     &:before, &:after
         content ''
         position absolute
@@ -66,7 +89,7 @@
     &:hover:before
         animation border_anim 0.2s ease-out forwards
 
-        
+
     &:not(:hover):after
         animation border_anim_rev 0.2s ease-out forwards
 

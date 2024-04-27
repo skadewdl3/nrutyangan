@@ -84,4 +84,7 @@ gradients = { position: 'top left', color: accentColor, opacity: 0.6, size: 5%, 
     opacity: 0;
   }
 }
+
+html
+  scroll-behavior smooth
 </style>

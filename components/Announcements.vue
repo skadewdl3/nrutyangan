@@ -1,7 +1,19 @@
 <script setup lang="ts">
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 dayjs.extend(customParseFormat)
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+
+const sm = breakpoints.greaterOrEqual('sm')
+const md = breakpoints.greaterOrEqual('md')
+const lg = breakpoints.greaterOrEqual('lg')
+const xl = breakpoints.greaterOrEqual('xl')
+
+console.log(sm.value, md.value, lg.value, xl.value);
+
+
 
 const months = [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -28,18 +40,24 @@ const announcements = [
 
 console.log(announcements[0].date);
 
+const count = computed(() => {
+    if (xl.value) return 3
+    if (md.value) return 2
+    return 1
+})
 </script>
 
 <template>
     <div class="announcements h-screen grid">
         <div class="announcements__container place-self-center">
-            <div class="announcements__title w-1/2 mx-auto text-center">
+            <div class="announcements__title w-[90%] md:w-[70%] lg:w-1/2 mx-auto text-center md:mt-32 xl:mt-0">
                 <h1 class="announcements__title--main text-4xl md:text-6xl font-serif">Announcements</h1>
                 <h3 class="announcements__title--sub font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl">Stay updated with the latest news, events, and important announcements. Be the first to know about new classes, workshops, and special offers.</h3>
             </div>
 
-            <div class="announcements-content w-[60%] mx-auto grid grid-cols-3 gap-8 text-black mt-16">
-                <div v-for="item in announcements" class="announcement flex flex-col px-8 py-4">
+            <div class="announcements-content w-[90%] lg:w-[80%] xl:w-[60%] mx-auto grid-cols-1 grid md:grid-cols-2 xl:grid-cols-3 gap-8 text-black mt-16">
+
+                <div v-for="item in announcements.slice(0, count)" class="announcement flex flex-col px-8 py-4">
                     
                     
                     <div class="announcement-header flex items-center justify-between">
@@ -53,6 +71,7 @@ console.log(announcements[0].date);
 
                     <p class="announcements-card-content--text text-xl font-thin">{{ item.content }}</p>
                 </div>
+
             </div>
         </div>
     </div>
