@@ -43,7 +43,7 @@ const active = ref(0)
           <span class="text-lg uppercase ml-4">{{ tab.name }}</span>
         </NuxtLink>
       </div>
-      
+
       <div class="mx-20">
         <NuxtPage />
       </div>
@@ -52,6 +52,10 @@ const active = ref(0)
 </template>
 
 <style lang="stylus">
+.testimonial
+    background rgba(#fff, 0.2)
+    backdrop-filter blur(5px)
+    
 
 gradients_to_bg(gds)
     s = ''

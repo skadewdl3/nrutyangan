@@ -4,7 +4,7 @@ const props = defineProps({
         required: false,
         type: String,
         default: 'primary'
-    }
+    },
 })
 </script>
 

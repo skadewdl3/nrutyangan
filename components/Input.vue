@@ -23,12 +23,18 @@ const model = defineModel()
 const focused = ref(false)
 const valid = ref(true)
 
-if (props.multiline) {
-    watch(model, () => {
-        const sizer = document.querySelector('.input-sizer') as HTMLElement
+
+
+onMounted(() => {
+    if (props.multiline) {
+        const sizer = document.querySelector('.grow-wrap') as HTMLElement
         sizer.setAttribute('data-value', model.value as string)
-    })
-}
+        watch(model, () => {
+            const sizer = document.querySelector('.grow-wrap') as HTMLElement
+            sizer.setAttribute('data-value', model.value as string)
+        })
+    }
+})
 
 if (props.validator) {
 watch(model, () => {
@@ -41,8 +47,8 @@ watch(model, () => {
 <template>
         <input :placeholder="props.placeholder" v-model="model" class="input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid border-red-500': model != '' && !valid, 'input--filled': model != '' && valid}" v-if="!props.multiline" :type="props.type">
         
-        <div v-else class="input-sizer stacked input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid border-red-500': validator && model != '' && !valid, 'input--filled': model != '' && valid}">
-            <textarea :placeholder="props.placeholder" @focusin="focused = true" @focusout="focused = false" v-model="model" class="outline-none w-full"></textarea>
+        <div v-else class="grow-wrap input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid border-red-500': validator && model != '' && !valid, 'input--filled': model != '' && valid, 'input--focused': focused}"  @focusin="focused = true" @focusout="focused = false">
+            <textarea :placeholder="props.placeholder" @focusin="focused = true" @focusout="focused = false" v-model="model" class="outline-none w-full bg-transparent"></textarea>
         </div>
 </template>
 
@@ -65,40 +71,34 @@ watch(model, () => {
         color black
         border-color accentColor
 
-.input-sizer {
-  display: inline-grid;
-  vertical-align: top;
-  align-items: center;
-  position: relative;
+.grow-wrap {
+  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+  display: grid;
+}
+.grow-wrap::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+  content: attr(data-value) " ";
 
-  &.stacked {
-    align-items: stretch;
-    
-    &::after,
-    input,
-    textarea {
-      grid-area: 2 / 1;
-    }
-  }
-  
-  &::after,
-  input,
-  textarea {
-    width: auto;
-    min-width: 1em;
-    grid-area: 1 / 2;
-    font: inherit;
-    margin: 0;
-    resize: none;
-    background: none;
-    appearance: none;
-    border: none;
-  }
-  
-  &::after {
-    content: attr(data-value) ' ';
-    visibility: hidden;
-    white-space: pre-wrap;
-  }
+  /* This is how textarea text behaves */
+  white-space: pre-wrap;
+
+  /* Hidden from view, clicks, and screen readers */
+  visibility: hidden;
+}
+.grow-wrap > textarea {
+  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+  resize: none;
+
+  /* Firefox shows scrollbar on growth, you can hide like this. */
+  overflow: hidden;
+}
+.grow-wrap > textarea,
+.grow-wrap::after {
+  /* Identical styling required!! */
+  padding: 0.5rem;
+  font: inherit;
+
+  /* Place on top of each other */
+  grid-area: 1 / 1 / 2 / 2;
 }
 </style>

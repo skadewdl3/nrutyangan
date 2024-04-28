@@ -7,7 +7,10 @@ const xl = breakpoints.greaterOrEqual('xl')
 
 
 let { data } = await useFetch<any>('/api/testimonials', {
-    method: 'GET'
+    method: 'GET',
+    query: {
+        limit: 3
+    }
 })
 
 let testimonials = data.value.testimonials

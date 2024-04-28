@@ -1,6 +1,6 @@
 // write mongoose query to get all events from the events database
 
-import AnnouncementSchema from '../schemas/Announcement'
+import AnnouncementSchema from '~/server/schemas/Announcement'
 import { useDB } from '~/composables/useDB'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
