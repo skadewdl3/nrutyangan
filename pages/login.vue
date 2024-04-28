@@ -37,7 +37,7 @@ const login = async () => {
          </div>
          <div class="w-1/3 mx-auto">
              <Input :validator="isEmail" placeholder="Email" v-model="email" />
-             <Input :validator="(x: string) => !isEmpty(X)" type="password" placeholder="Password" v-model="password" />
+             <Input :validator="(x: string) => !isEmpty(x)" type="password" placeholder="Password" v-model="password" />
              <Button :type="loading ? 'disabled' : 'primary'">Login</Button>
          </div>
     </form>

@@ -47,15 +47,17 @@ const save = async () => {
         let data = await $fetch<any>('/api/users', {
             method: 'PUT',
             body: {
-                id: users.value[selected.value]._id,
                 updates: {
                     firstName: firstName.value,
                     lastName: lastName.value,
                     email: email.value,
-                    password: password.value
+                    password: password.value,
+                    resetPassword: reset.value
                 }
             }
         })
+        console.log(data);
+        
         
     }
     selected.value = -1
