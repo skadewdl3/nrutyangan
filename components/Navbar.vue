@@ -12,7 +12,8 @@ const hovered = useElementHover(logo)
     <div
       ref="logo"
       class="navbar__right flex items-center justify-start cursor-pointer hover:text-white transition-all"
-    >
+      @click="navigateTo('/')"
+      >
       <div class="navbar__logo" :class="{ 'navbar__logo--hovered': hovered }">
         <img src="~/assets/logo.png" class="w-12 sm:w-16 md:w-20 xl:w-24" />
       </div>

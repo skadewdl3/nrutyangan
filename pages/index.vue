@@ -20,24 +20,11 @@ watch(() => navbarStore.joinScroll, () => {
 </script>
 
 <template>
-  <div
-    ref="index"
-    class="index transition-all relative"
-    :class="{ 'index--zoomed': navbarStore.flyout }"
-  >
-    <!-- Twinkling Stars -->
-    <StarField span="full" />
-
-    <div
-      class="transition-all index-content"
-      :class="{ 'index-content--hidden': navbarStore.flyout }"
-    >
-      <Hero />
-      <Announcements />
-      <Testimonials />
-      <Footer />
-    </div>
-  </div>
+      <NuxtLayout name="starry">
+        <Hero />
+        <Announcements />
+        <Testimonials />
+      </NuxtLayout>
 </template>
 
 <style lang="stylus">

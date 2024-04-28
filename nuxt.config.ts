@@ -4,7 +4,7 @@ import { stylusVars } from './tailwind.config'
 
 export default defineNuxtConfig({
   routeRules: {
-    '/': { isr: true },
+    '/**': { isr: 60 * 60 * 24 },
   },
   // routeRules: {
   //   "/": {
