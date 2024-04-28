@@ -8,11 +8,6 @@ const { data } = await useFetch<any>('/api/events', {
 const activeEvent = ref(-1)
 
 let events = data.value.events
-
-watch(activeEvent, () => {
-  console.log(activeEvent.value);
-  
-})
 </script>
 
 <template>

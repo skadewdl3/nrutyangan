@@ -59,8 +59,6 @@ export default defineEventHandler(async event => {
     }
   })
 
-  console.log(events)
-
   return {
     events,
   }

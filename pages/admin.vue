@@ -1,29 +1,11 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'auth' })
 
-const tabs = [
-  {
-    name: 'Home',
-    icon: 'material-symbols:home-rounded',
-    link: '/admin/home'
-  },
-  {
-    name: 'Branches',
-    icon: 'material-symbols:location-on-outline',
-    link: '/admin/branches'
-  },
-  {
-    name: 'Testimonials',
-    icon: 'material-symbols:kid-star-outline',
-    link: '/admin/testimonials'
-  },
-  {
-    name: 'Events',
-    icon: 'material-symbols:calendar-today',
-    link: '/admin/events'
-  },
-]
-const active = ref(0)
+const adminStore = useAdminStore()
+const route = useRoute()
+
+adminStore.setActiveTab(adminStore.tabs.findIndex((tab: any) => tab.link === route.path))
+
 </script>
 
 <template>
@@ -33,10 +15,10 @@ const active = ref(0)
         class="sidebar mx-16 flex flex-col"
       >
         <NuxtLink
-          v-for="(tab, i) in tabs"
+          v-for="(tab, i) in adminStore.tabs"
           class="text-2xl mb-2 flex items-center justify-start cursor-pointer"
-          :class="{ 'text-accent': i === active }"
-          @click="active = i"
+          :class="{ 'text-accent': i === adminStore.activeTab }"
+          @click="adminStore.setActiveTab(i)"
           :to="tab.link"
         >
           <Icon :name="tab.icon" />

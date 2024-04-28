@@ -39,7 +39,6 @@ onMounted(() => {
 if (props.validator) {
 watch(model, () => {
         valid.value = props.validator(model.value)
-        console.log(valid.value);        
     })
 }
 </script>

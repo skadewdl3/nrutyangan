@@ -7,7 +7,8 @@ dayjs.extend(timeToNow)
 dayjs.extend(utc)
 
 export default defineEventHandler(async event => {
-  const data = await readBody(event)
+  const data = getQuery(event)
+
   const db = await useDB('nrutyangan')
 
   const Announcement = db.model(
@@ -15,27 +16,23 @@ export default defineEventHandler(async event => {
     AnnouncementSchema,
     'announcements'
   )
-  const announcement = new Announcement({
-    title: data.title,
-    description: data.description,
-    date: dayjs().utc().format(),
-  })
 
-  let newAnnouncement: any = await announcement.save().catch(err => {
-    console.log(err)
+  let found = (await Announcement.findOneAndDelete({ _id: data.id }).catch(
+    err => {
+      console.log(err)
+      return null
+    }
+  )) as any
+
+  if (!found) {
     return {
       status: 'error',
-      message: 'Unknown error while creating announcement',
+      message: 'Unknown error while deleting announcement',
     }
-  })
+  }
 
-  if (!newAnnouncement)
-    return {
-      status: 'error',
-      message: 'Unknown error while creating announcement',
-    }
   return {
     status: 'success',
-    announcement: newAnnouncement,
+    announcement: found,
   }
 })

@@ -6,11 +6,11 @@ const content = ref('')
 const author = ref('')
 
 const updateTestimonials = async () => {
-    let { data } = await useFetch<any>('/api/testimonials', {
+    let data = await $fetch<any>('/api/testimonials', {
         method: 'GET'
     })
     // @ts-ignore
-    testimonials.value = data.value.testimonials
+    testimonials.value = data.testimonials
 }
 
 
@@ -25,23 +25,37 @@ const setSelected = (index: number) => {
 
 const save = async () => {
     if (selected.value == testimonials.value.length) {
-        let { data } = await useFetch<any>('/api/testimonials', {
+        let data = await $fetch<any>('/api/testimonials', {
             method: 'POST',
             body: {
                 content: content.value,
                 author: author.value,
-                date: Date.now().toString()
+                date: Date.now().toString(),
             }
         })
-        selected.value = -1
     }
+    else {
+        let data = await $fetch<any>('/api/testimonials', {
+            method: 'PUT',
+            body: {
+                id: testimonials.value[selected.value]._id,
+                updates: {
+                    content: content.value,
+                    author: author.value
+                }
+            }
+        })
+        
+    }
+        selected.value = -1
+
     updateTestimonials()
 }
 
 
 
-const deleteTestimonial = async (index) => {
-    let { data } = await useFetch<any>(`/api/testimonials`, {
+const deleteTestimonial = async (index: number) => {
+    let data = await $fetch<any>(`/api/testimonials`, {
         method: 'DELETE',
         query: {
             id: testimonials.value[index]._id
@@ -50,18 +64,24 @@ const deleteTestimonial = async (index) => {
     updateTestimonials()
 }
 
+const removeSelected = () => {
+    selected.value = -1
+    author.value = ''
+    content.value = ''
+}
+
 updateTestimonials()
 </script>
 
 <template>
     <div class="admin-testimonials grid grid-cols-3 gap-4 cursor-pointer relative w-full h-full">
-        <div v-if="selected != -1" class="testimonial-editor absolute top-0 left-0 w-full z-[2]">
+        <div v-if="selected != -1" class="testimonial-editor absolute top-0 left-1/2 -translate-x-1/2 w-3/4 z-[2]">
             <div class="mx-auto grid place-items-center ">
                 <span class="text-4xl font-serif">{{ selected == testimonials.length ? 'Add Testimonial' : 'Edit Testimonial' }}</span>
                 <Input class="w-1/2 " :multiline="true" placeholder="Content" v-model="content" />
                 <Input class="w-1/2 " placeholder="Author" v-model="author" />
                 <div class="flex items-center justify-center">
-                    <Button class="mr-2" type="secondary" @click="selected = -1">Cancel</Button>
+                    <Button class="mr-2" type="secondary" @click="removeSelected">Cancel</Button>
                     <Button @click="save">Save</Button>
                 </div>
             </div>

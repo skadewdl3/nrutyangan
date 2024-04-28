@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const navbarStore = useNavbarStore()
 const auth = useAuthState()
-console.log(auth.status.value);
-
-
 
 const logo = ref(null)
 const store = useNavbarStore()
