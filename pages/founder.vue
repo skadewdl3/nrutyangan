@@ -4,7 +4,9 @@ const navbarStore = useNavbarStore()
 
 <template>
   <NuxtLayout name="starry" footer="simply">
-      <h3 class="my-32 text-2xl w-2/3 mx-auto">Established in 1983 by SMT. B. Suhasini in Pune, the organization became a hub for Kathak enthusiasts. Under the expert guidance of Prof. Balasaheb Gokhale at 'Bharat Natyam Sanshodhan Mandir,' SMT. B. Suhasini meticulously mastered Kathak over a 15-year period. Together, as mentor and pupil, they graced numerous stages in Pune, enriching the city's cultural tapestry with Kathak performances.
+      <h3 class="my-32 text-2xl w-[90%] md:w-[80%] lg:w-[70%] xl:w-2/3 mx-auto text-justify">
+    <img src="~/assets/founder.jpg" class="w-full lg:w-1/2 lg:ml-4 mb-4 lg:float-right" />
+        Established in 1983 by SMT. B. Suhasini in Pune, the organization became a hub for Kathak enthusiasts. Under the expert guidance of Prof. Balasaheb Gokhale at 'Bharat Natyam Sanshodhan Mandir,' SMT. B. Suhasini meticulously mastered Kathak over a 15-year period. Together, as mentor and pupil, they graced numerous stages in Pune, enriching the city's cultural tapestry with Kathak performances.
 
 Expanding their reach, they pioneered Kathak education at Shadu College, offering classes tailored for young girls. Their commitment to nurturing talent from an early age elevated the local Kathak dance scene, establishing a benchmark for Kathak instruction in Pune.
 
