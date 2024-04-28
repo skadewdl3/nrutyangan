@@ -21,7 +21,9 @@ const props = defineProps({
 
 const model = defineModel()
 const focused = ref(false)
-const valid = ref(true)
+const valid = computed(() => {
+    return props.validator ? props.validator(model.value) : true
+})
 
 
 
@@ -37,16 +39,16 @@ onMounted(() => {
 })
 
 if (props.validator) {
-watch(model, () => {
-        valid.value = props.validator(model.value)
-    })
+watch(valid, () => {
+    console.log(valid.value);
+})
 }
 </script>
 
 <template>
-        <input :placeholder="props.placeholder" v-model="model" class="input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid border-red-500': model != '' && !valid, 'input--filled': model != '' && valid}" v-if="!props.multiline" :type="props.type">
+        <input :placeholder="props.placeholder" v-model="model" class="input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid': props.validator && model != '' && !valid, 'input--filled': model != '' && valid, 'input--focused': focused}" v-if="!props.multiline" :type="props.type">
         
-        <div v-else class="grow-wrap input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid border-red-500': validator && model != '' && !valid, 'input--filled': model != '' && valid, 'input--focused': focused}"  @focusin="focused = true" @focusout="focused = false">
+        <div v-else class="grow-wrap input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid': props.validator && model != '' && !valid, 'input--filled': model != '' && valid, 'input--focused': focused}"  @focusin="focused = true" @focusout="focused = false">
             <textarea :placeholder="props.placeholder" @focusin="focused = true" @focusout="focused = false" v-model="model" class="outline-none w-full bg-transparent"></textarea>
         </div>
 </template>
@@ -69,7 +71,9 @@ watch(model, () => {
         background #fff
         color black
         border-color accentColor
-
+    
+    &--invalid
+        border-color #ef4444!important
 .grow-wrap {
   /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
   display: grid;

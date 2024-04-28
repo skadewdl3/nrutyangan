@@ -5,7 +5,6 @@ import getToken from '#auth'
 
 export default defineEventHandler(async event => {
   const cookie = getCookie(event, 'auth:token')
-  console.log(cookie)
   if (!cookie) {
     return {
       status: 'unauthenticated',

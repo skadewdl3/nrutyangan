@@ -30,7 +30,7 @@ export const useNavbarStore = defineStore('navbar', () => {
       },
     },
     auth.status.value == 'authenticated'
-      ? route.value == '/admin/home'
+      ? route.value.startsWith('/admin')
         ? {
             name: 'Logout',
             action: () => {
