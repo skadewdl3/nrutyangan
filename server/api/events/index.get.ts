@@ -1,6 +1,6 @@
 // write mongoose query to get all events from the events database
 
-import EventSchema from '../schemas/Event'
+import EventSchema from '~/server/schemas/Event'
 import { useDB } from '~/composables/useDB'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
@@ -9,21 +9,6 @@ import { useFirebase } from '~/composables/useFirebase'
 
 dayjs.extend(utc)
 dayjs.extend(relativeTime)
-
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-]
 
 export default defineEventHandler(async event => {
   const db = await useDB('nrutyangan')
@@ -37,6 +22,7 @@ export default defineEventHandler(async event => {
       return {
         ...event.toObject(),
         date: date.fromNow(),
+        rawDate: date.format('MMMM D, YYYY'),
       }
     }
   )
