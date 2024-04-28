@@ -5,6 +5,8 @@ import { stylusVars } from './tailwind.config'
 export default defineNuxtConfig({
   routeRules: {
     '/**': { isr: 60 * 60 * 24 },
+    '/login': { ssr: false },
+    '/admin': { ssr: false },
   },
   // routeRules: {
   //   "/": {
@@ -43,7 +45,7 @@ export default defineNuxtConfig({
   auth: {
     provider: {
       pages: {
-        login: '/auth',
+        login: '/login',
       },
       type: 'local',
       token: {

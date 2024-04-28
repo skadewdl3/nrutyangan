@@ -21,6 +21,9 @@ export default defineEventHandler(async event => {
     }
   })
 
+  console.log('new user created')
+  
+
   if (!newUser)
     return { status: 'error', message: 'Unknown error while creating account' }
   newUser.hashedPassword = undefined

@@ -29,7 +29,7 @@ export const useNavbarStore = defineStore('navbar', () => {
     },
     {
       name: 'Login',
-      link: '/auth',
+      link: '/login',
     },
   ]
   const setJoinScroll = (value: boolean) => {

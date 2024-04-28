@@ -29,7 +29,7 @@ const props = defineProps({
         <slot />
       </div>
 
-        <Footer :simple="Boolean(props.footer)" />
+        <Footer v-if="props.footer != 'hidden'" :simple="Boolean(props.footer)" />
       </div>
     </div>
   </Body>

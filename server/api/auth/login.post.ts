@@ -24,6 +24,12 @@ export default defineEventHandler(async event => {
       { expiresIn: '1d' }
     )
 
+    setCookie(event, 'auth:token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+    })
+
     return {
       token,
     }

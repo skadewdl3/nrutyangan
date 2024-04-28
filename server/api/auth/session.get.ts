@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { useDB } from '~/composables/useDB'
 import UserSchema from '~/server/schemas/User'
+import getToken from '#auth'
 
 export default defineEventHandler(async event => {
   const cookie = getCookie(event, 'auth:token')
