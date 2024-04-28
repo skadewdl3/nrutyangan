@@ -5,6 +5,5 @@ definePageMeta({ middleware: 'auth' })
 
 <template>
     <NuxtLayout name="starry" footer="hidden">
-        
     </NuxtLayout>
 </template>

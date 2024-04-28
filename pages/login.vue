@@ -19,10 +19,11 @@ const login = async () => {
         email: email.value,
         password: password.value
     }, {
-        redirect: true,
-        callbackUrl: '/admin'
-    }).catch(err => loading.value = false)
+        redirect: false,
+    })
+    .catch(err => loading.value = false)
     loading.value = false
+    navigateTo('/admin')
 }
 </script>
 
@@ -34,7 +35,7 @@ const login = async () => {
          </div>
          <div class="w-1/3 mx-auto">
              <Input placeholder="Email" v-model="email" />
-             <Input placeholder="Password" v-model="password" />
+             <Input type="password" placeholder="Password" v-model="password" />
              <Button :type="loading ? 'disabled' : 'primary'">Login</Button>
          </div>
     </form>
