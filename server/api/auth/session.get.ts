@@ -5,6 +5,17 @@ import getToken from '#auth'
 
 export default defineEventHandler(async event => {
   const cookie = getCookie(event, 'auth:token')
+  console.log(cookie)
+  if (!cookie) {
+    return {
+      status: 'unauthenticated',
+    }
+  }
+  setCookie(event, 'auth:token', cookie, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  })
   const config = useRuntimeConfig()
 
   const verification: any = jwt.verify(

@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/**': { isr: 60 * 60 * 24 },
     '/login': { ssr: false },
-    '/admin': { redirect: '/admin/home' },
+    '/admin': { redirect: '/admin/home', ssr: false },
     '/admin/**': { ssr: false },
   },
   devtools: { enabled: false },
