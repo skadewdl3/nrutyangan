@@ -5,7 +5,7 @@ definePageMeta({
     middleware: 'auth',
     auth: {
         unauthenticatedOnly: true,
-        navigateAuthenticatedTo: '/admin'
+        navigateAuthenticatedTo: '/admin/home'
     }
 })
 
@@ -25,7 +25,7 @@ const login = async () => {
     })
     .catch(err => loading.value = false)
     loading.value = false
-    navigateTo('/admin')
+    navigateTo('/admin/home')
 }
 </script>
 

@@ -31,14 +31,14 @@ onMounted(() => {
       </div>
     </div>
     <div class="navbar__left font-heading flex">
-      <a
+      <NuxtLink
         v-for="link in navbarStore.items"
         class="hidden md:block py-1 ml-4 cursor-pointer relative"
-        :href="link.link"
+        :to="link.link"
         @click="link.action"
       >
         <span class="navbar__link">{{ link.name }}</span>
-      </a>
+      </NuxtLink>
       <span class="md:hidden" @click="store.toggleFlyout()">
         <Icon
           class="text-2xl sm:text-3xl cursor-pointer"

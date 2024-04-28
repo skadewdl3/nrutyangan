@@ -1,0 +1,3 @@
+<template>
+    Branches admin
+</template>

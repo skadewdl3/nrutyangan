@@ -6,25 +6,9 @@ export default defineNuxtConfig({
   routeRules: {
     '/**': { isr: 60 * 60 * 24 },
     '/login': { ssr: false },
-    '/admin': { ssr: false },
+    '/admin': { redirect: '/admin/home' },
+    '/admin/**': { ssr: false },
   },
-  // routeRules: {
-  //   "/": {
-  //     prerender: true,
-  //   },
-  //   "/auth": {
-  //     ssr: false, // nuxt-auth doesnt play well with ssr
-  //   },
-  //   "/dashboard": {
-  //     ssr: false, // nuxt-auth doesnt play well with ssr
-  //   },
-  //   "/story": {
-  //     ssr: true, // nuxt-aos doesnt play well with ssr
-  //   },
-  //   "/events": {
-  //     prerender: true,
-  //   },
-  // },
   devtools: { enabled: false },
   modules: [
     '@sidebase/nuxt-auth',

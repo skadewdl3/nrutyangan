@@ -8,7 +8,7 @@ const navbarStore = useNavbarStore()
             <div class="flex flex-col items-center justify-center">
                 <div class="text-3xl font-heading">Menu</div>
                 <div class="flex flex-col items-center justify-center mt-4">
-                    <a :href="link.link" @click="link.action" class="py-2" v-for="link in navbarStore.items">{{ link.name }}</a>
+                    <NuxtLink :to="link.link" @click="link.action" class="py-2" v-for="link in navbarStore.items">{{ link.name }}</NuxtLink>
                 </div>
             </div>
         </div>
