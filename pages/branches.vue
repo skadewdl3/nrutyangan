@@ -20,13 +20,24 @@ const navbarStore = useNavbarStore()
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-[90%] mx-auto mt-8 mb-16">
         <div v-for="branch in branches" class="rounded overflow-hidden text-white group">
             <div class="aspect-video overflow-hidden">
-                <img :src="branch.coverPhoto" class="object-contain group-hover:scale-150 transition-all" />
+                <img :src="branch.coverPhoto" class="object-contain group-hover:scale-110 transition-all" loading="lazy" />
             </div>
             <div class="text-center">
 
                 <p class="text-2xl font-bold my-2">{{ branch.name }}</p>
                 <p class="w-3/4 mx-auto capitalize">{{ branch.address }}</p>
             </div>
+             <div class="flex items-center justify-center text-white my-2">
+            
+                     <div class="flex items-start justify-center text-black">
+                <div class="rounded overflow-hidden bg-white mx-2 text-center" v-for="[day, timings] in Object.entries(branch.days)">
+                    <p class="w-full bg-red-500 text-white uppercase px-4">{{ day.slice(0, 3) }}</p>
+                    <p v-for="time in timings">{{ time.start }} - {{ time.end }}</p>
+                </div>
+
+            </div>
+            </div>
+           
         </div>
     </div>
     <h3 class="text-center text-2xl"><span class="underline cursor-pointer" @click="() => {

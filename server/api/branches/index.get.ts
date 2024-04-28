@@ -1,6 +1,8 @@
 import { useDB } from '~/composables/useDB'
 import { useFirebase } from '~/composables/useFirebase'
 import BranchSchema from '~/server/schemas/Branch'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat.js'
 
 export default defineEventHandler(async () => {
   const db = await useDB('nrutyangan')
@@ -20,9 +22,24 @@ export default defineEventHandler(async () => {
     })
   )
 
-  branches = branches.map((event: any, index: number) => {
+  branches = branches.map((branch: any, index: number) => {
+    // let days = {}
+    branch = branch.toObject()
+
+    // console.log(branch)
+
+    // for (let day in branch.days) {
+    //   // @ts-ignore
+    //   days[day] = branch.days[day].map(({ start, end }) => {
+    //     return `${dayjs(String(start), 'H.m').format('h:m A')} - ${dayjs(
+    //       String(end),
+    //       'H.m'
+    //     ).format('h:m A')}`
+    //   })
+    // }
     return {
-      ...event.toObject(),
+      ...branch,
+      // days,
       coverPhoto: urls[index],
     }
   })
