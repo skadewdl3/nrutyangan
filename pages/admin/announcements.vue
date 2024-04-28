@@ -89,7 +89,7 @@ updateAnnouncements()
         </div>
         
         <template v-else>
-            <div class="announcement p-8 rounded group relative" v-for="(item, i) in announcements">
+            <div class="admin-announcement p-8 rounded group relative" v-for="(item, i) in announcements">
                 <div class="hover-overlay opacity-0 group-hover:opacity-100 flex flex-col transition-all bg-white/70 absolute top-0 left-0 w-full h-full border-dashed border-2 border-white/70 rounded text-black items-center justify-center">
                     <span class="flex" @click="setSelected(i)">
                         <Icon class="text-2xl mr-2" name="material-symbols:edit" />
@@ -100,18 +100,18 @@ updateAnnouncements()
                         <span class="text-xl my-auto">Remove</span>
                     </span>
                 </div>
-                <div class="announcement-header flex items-center justify-between">
-                    <h2 class="announcement-title font-bold font-heading text-2xl">{{ item.title }}</h2>
-                    <div class="announcement-date text-center text-sm text-gray-500 flex items-center justify-between flex-col bg-white font-bold">
+                <div class="admin-announcement-header flex items-center justify-between">
+                    <h2 class="admin-announcement-title font-bold font-heading text-2xl">{{ item.title }}</h2>
+                    <div class="admin-announcement-date text-center text-sm text-gray-500 flex items-center justify-between flex-col bg-white font-bold">
                         <span class="bg-red-800 uppercase p-2 text-white font-heading">{{ item.month }}</span>
                         <span class="pb-2 text-black font-serif">{{ item.date }}</span>
                     </div>
 
                 </div>
 
-                <p class="announcements-card-title--text text-xl font-thin">{{ item.description }}</p>
+                <p class="admin-announcements-card-title--text text-xl font-thin">{{ item.description }}</p>
             </div>
-            <div class="announcement-add p-8 rounded flex items-center justify-center border-dashed border-2 border-white/60 hover:border-white/90 cursor-pointer transition-all" @click="setSelected(announcements.length)">
+            <div class="admin-announcement-add p-8 rounded flex items-center justify-center border-dashed border-2 border-white/60 hover:border-white/90 cursor-pointer transition-all" @click="setSelected(announcements.length)">
                 <Icon class="text-2xl mr-2" name="material-symbols:add-circle-outline" />
                 <span class="text-xl my-auto">Add Announcement</span>
             </div>

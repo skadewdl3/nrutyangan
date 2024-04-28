@@ -2,6 +2,15 @@
 
 import { stylusVars } from './tailwind.config'
 
+const customVars = `
+gradients_to_bg(gds)
+    s = ''
+    for gd in gds
+        push(s, 'radial-gradient(circle at ' + gd.position + ', ' + rgba(gd.color, gd.opacity) + ' ' + gd.size + ', transparent ' + gd.transparent + ')')
+    shift(s)
+    unquote(join(', ', s))
+`
+
 export default defineNuxtConfig({
   routeRules: {
     '/**': { isr: 60 * 60 * 24 },
@@ -69,7 +78,8 @@ export default defineNuxtConfig({
         stylus: {
           additionalData: Object.entries(stylusVars)
             .map(([key, value]) => `${key} = ${value}`)
-            .join('\n'),
+            .join('\n')
+            .concat(customVars),
         },
       },
     },

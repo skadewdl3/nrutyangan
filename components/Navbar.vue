@@ -15,18 +15,19 @@ onMounted(() => {
 
 <template>
   <div class="navbar w-full flex items-center justify-between p-4 md:px-8">
-    <div
-      ref="logo"
-      class="navbar__right flex items-center justify-start cursor-pointer hover:text-white transition-all"
-      @click="navigateTo('/')"
-      >
-      <div class="navbar__logo" :class="{ 'navbar__logo--hovered': hovered }">
-        <img src="~/assets/logo.png" class="w-12 sm:w-16 md:w-20 xl:w-24" />
+    <NuxtLink to="/">
+      <div
+        ref="logo"
+        class="navbar__right flex items-center justify-start cursor-pointer hover:text-white transition-all"
+        >
+        <div class="navbar__logo" :class="{ 'navbar__logo--hovered': hovered }">
+          <img src="~/assets/logo.png" class="w-12 sm:w-16 md:w-20 xl:w-24" />
+        </div>
+        <div class="navbar__text font-serif text-3xl hidden md:block">
+          Nrutyangan
+        </div>
       </div>
-      <div class="navbar__text font-serif text-3xl hidden md:block">
-        Nrutyangan
-      </div>
-    </div>
+    </NuxtLink>
     <div class="navbar__left font-heading flex">
       <NuxtLink
         v-for="link in navbarStore.items"

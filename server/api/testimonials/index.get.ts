@@ -14,11 +14,9 @@ export default defineEventHandler(async event => {
 
   let testimonials: any
 
-  console.log(data.limit)
-
   if (data.limit) {
     testimonials = (
-      await Testimonial.find({}).sort({ date: -1 }).limit(3).exec()
+      await Testimonial.find({}).sort({ date: -1 }).limit(data.limit).exec()
     ).map((testimonial: any) => {
       const date = dayjs(testimonial.date).utc()
       return {

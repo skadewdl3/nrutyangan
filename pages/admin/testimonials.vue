@@ -88,7 +88,7 @@ updateTestimonials()
         </div>
         
         <template v-else>
-            <div class="testimonial p-8 rounded group relative" v-for="(item, i) in testimonials">
+            <div class="admin-testimonial p-8 rounded group relative" v-for="(item, i) in testimonials">
                 <div class="hover-overlay opacity-0 group-hover:opacity-100 flex flex-col transition-all bg-white/70 absolute top-0 left-0 w-full h-full border-dashed border-2 border-white/70 rounded text-black items-center justify-center">
                     <span class="flex" @click="setSelected(i)">
                         <Icon class="text-2xl mr-2" name="material-symbols:edit" />
@@ -99,14 +99,14 @@ updateTestimonials()
                         <span class="text-xl my-auto">Remove</span>
                     </span>
                 </div>
-                <div class="testimonial-header flex items-center justify-between">
+                <div class="admin-testimonial-header flex items-center justify-between">
                     <Stars :count="item.stars" />
                     <span>{{ item.date }}</span>
                 </div>
-                <div class="testimonial-content">{{ item.content }}</div>
-                <div class="testimonial-author capatalize font-bold text-pink-400">- {{ item.author }} </div>
+                <div class="admin-testimonial-content">{{ item.content }}</div>
+                <div class="admin-testimonial-author capatalize font-bold text-pink-400">- {{ item.author }} </div>
             </div>
-            <div class="testimonial-add p-8 rounded flex items-center justify-center border-dashed border-2 border-white/60 hover:border-white/90 cursor-pointer transition-all" @click="setSelected(testimonials.length)">
+            <div class="admin-testimonial-add p-8 rounded flex items-center justify-center border-dashed border-2 border-white/60 hover:border-white/90 cursor-pointer transition-all" @click="setSelected(testimonials.length)">
                 <Icon class="text-2xl mr-2" name="material-symbols:add-circle-outline" />
                 <span class="text-xl my-auto">Add Testimonial</span>
             </div>
