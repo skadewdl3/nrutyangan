@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { isEmail } from 'validator'
+
 definePageMeta({
     middleware: 'auth',
     auth: {
@@ -34,7 +36,7 @@ const login = async () => {
              <h1 class="auth__title--main text-4xl md:text-6xl font-serif">Admin Login</h1>
          </div>
          <div class="w-1/3 mx-auto">
-             <Input placeholder="Email" v-model="email" />
+             <Input :validator="isEmail" placeholder="Email" v-model="email" />
              <Input type="password" placeholder="Password" v-model="password" />
              <Button :type="loading ? 'disabled' : 'primary'">Login</Button>
          </div>

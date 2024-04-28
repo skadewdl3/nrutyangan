@@ -11,11 +11,17 @@ const props = defineProps({
     type: {
         required: false,
         default: 'text'
+    },
+    validator: {
+        required: false,
+        default: null,
+        type: Function
     }
 })
 
 const model = defineModel()
 const focused = ref(false)
+const valid = ref(true)
 
 if (props.multiline) {
     watch(model, () => {
@@ -23,16 +29,21 @@ if (props.multiline) {
         sizer.setAttribute('data-value', model.value as string)
     })
 }
+
+if (props.validator) {
+watch(model, () => {
+        valid.value = props.validator(model.value)
+        console.log(valid.value);        
+    })
+}
 </script>
 
 <template>
-    <div>
-        <input :placeholder="props.placeholder" v-model="model" class="input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--filled': model}" v-if="!props.multiline" :type="props.type">
+        <input :placeholder="props.placeholder" v-model="model" class="input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid border-red-500': model != '' && !valid, 'input--filled': model != '' && valid}" v-if="!props.multiline" :type="props.type">
         
-        <div v-else class="input-sizer stacked input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--filled': model, 'input--focused': focused}">
+        <div v-else class="input-sizer stacked input outline-none w-full px-4 py-2 border-solid border-transparent border-4" :class="{'input--invalid border-red-500': validator && model != '' && !valid, 'input--filled': model != '' && valid}">
             <textarea :placeholder="props.placeholder" @focusin="focused = true" @focusout="focused = false" v-model="model" class="outline-none w-full"></textarea>
         </div>
-    </div>
 </template>
 
 <style lang="stylus">

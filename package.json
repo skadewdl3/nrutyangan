@@ -16,6 +16,7 @@
     "@sidebase/nuxt-auth": "^0.7.2",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/validator": "^13.11.9",
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0",
     "aos": "^2.3.4",
@@ -28,6 +29,7 @@
     "nuxt-aos": "^1.2.4",
     "nuxt-icon": "^0.6.10",
     "stylus": "^0.63.0",
+    "validator": "^13.11.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   }
