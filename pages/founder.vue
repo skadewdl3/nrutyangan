@@ -4,9 +4,9 @@ const navbarStore = useNavbarStore()
 
 <template>
   <NuxtLayout name="starry" footer="simply">
-    <div class="announcements__title w-[90%] md:w-[70%] lg:w-1/2 mx-auto text-center mt-32">
-          <h1 class="announcements__title--main text-4xl md:text-6xl font-serif">Our Founder</h1>
-          <h3 class="announcements__title--sub font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl">Learn about the visionary behind our dance school. Discover their passion, journey, and dedication to creating a welcoming space for dancers of all ages and backgrounds.</h3>
+    <div class="founder__title w-[90%] md:w-[70%] lg:w-1/2 mx-auto text-center mt-32">
+          <h1 class="founder__title--main text-4xl md:text-6xl font-serif">Our Founder</h1>
+          <h3 class="founder__title--sub font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl">Learn about the visionary behind our dance school. Discover their passion, journey, and dedication to creating a welcoming space for dancers of all ages and backgrounds.</h3>
       </div>
       <h3 class="my-32 text-2xl w-[90%] md:w-[80%] lg:w-[70%] xl:w-2/3 mx-auto text-justify">
     <img src="~/assets/founder.jpg" class="w-full lg:w-1/2 lg:ml-8 mb-8 lg:float-right" />
