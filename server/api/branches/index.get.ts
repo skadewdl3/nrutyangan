@@ -30,11 +30,19 @@ export default defineEventHandler(async () => {
     for (let day in branch.days) {
       // @ts-ignore
       days[day] = branch.days[day].map(({ start, end }) => {
-        start = String(start)
-        if (!start.includes('.')) start += '.0'
+        start = String(start).split('.')
+        if (start.length === 1) start.push('00')
+        if (start[0].length < 2) start[0] = '0' + start[0]
+        if (start[1].length < 2) start[1] = start[1] + '0'
+        start = start.join('.')
 
-        end = String(end)
-        if (!end.includes('.')) end += '.0'
+        end = String(end).split('.')
+        if (end.length === 1) end.push('00')
+        if (end[0].length < 2) end[0] = '0' + end[0]
+        if (end[1].length < 2) end[1] = end[1] + '0'
+        end = end.join('.')
+
+        console.log(start, end)
 
         return `${dayjs(start, 'H.m').format('h:mm A')} - ${dayjs(
           end,
