@@ -30,9 +30,9 @@ const navbarStore = useNavbarStore()
              <div class="flex items-center justify-center text-white my-2">
             
                      <div class="flex items-start justify-center text-black">
-                <div class="rounded overflow-hidden bg-white mx-2 text-center" v-for="[day, timings] in Object.entries(branch.days)">
-                    <p class="w-full bg-red-500 text-white uppercase px-4">{{ day.slice(0, 3) }}</p>
-                    <p v-for="time in timings">{{ time.start }} - {{ time.end }}</p>
+                <div class="rounded overflow-hidden bg-white mx-2 text-center flex flex-col" v-for="[day, timings] in Object.entries(branch.days)">
+                    <p class="w-full bg-red-500 text-white uppercase">{{ day.slice(0, 3) }}</p>
+                    <p class="mb-2" v-for="time in timings">{{ time }}</p>
                 </div>
 
             </div>
