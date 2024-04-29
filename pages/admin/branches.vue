@@ -9,6 +9,7 @@ const selected = ref(-1)
 const name = ref('')
 const address = ref('')
 
+
 const updateBranches = async () => {
   let data = await $fetch<any>('/api/branches', {
     method: 'GET',
@@ -32,7 +33,6 @@ const save = async () => {
       body: {
         name: name.value,
         address: address.value,
-        date: Date.now().toString(),
       },
     })
   } else {
@@ -52,7 +52,7 @@ const save = async () => {
   updateBranches()
 }
 
-const deleteAnnouncement = async (index: number) => {
+const deleteBranch = async (index: number) => {
   let data = await $fetch<any>(`/api/branches`, {
     method: 'DELETE',
     query: {
@@ -78,11 +78,11 @@ const removeSelected = () => {
         <span class="text-4xl font-serif">{{
           selected == branches.length ? 'Add Branch' : 'Edit Branch'
         }}</span>
-        <Input class="w-1/2" placeholder="Title" v-model="name" />
+        <Input class="w-1/2" placeholder="Name" v-model="name" />
         <Input
           class="w-1/2"
           :multiline="true"
-          placeholder="Content"
+          placeholder="Address"
           v-model="address"
         />
         <div class="flex items-center justify-center">
@@ -95,7 +95,7 @@ const removeSelected = () => {
     </div>
     <template v-else>
       <div
-        v-for="branch in branches"
+        v-for="(branch, i) in branches"
         class="rounded overflow-hidden text-white group cursor-pointer relative"
       >
         <div
@@ -105,7 +105,7 @@ const removeSelected = () => {
             <Icon class="text-2xl mr-2" name="material-symbols:edit" />
             <span class="text-xl my-auto">Edit</span>
           </span>
-          <span class="flex text-red-500" @click="deleteAnnouncement(i)">
+          <span class="flex text-red-500" @click="deleteBranch(i)">
             <Icon
               class="text-2xl mr-2"
               name="material-symbols:delete-outline"

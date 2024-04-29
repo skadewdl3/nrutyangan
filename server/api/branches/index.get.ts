@@ -42,8 +42,6 @@ export default defineEventHandler(async () => {
         if (end[1].length < 2) end[1] = end[1] + '0'
         end = end.join('.')
 
-        console.log(start, end)
-
         return `${dayjs(start, 'H.m').format('h:mm A')} - ${dayjs(
           end,
           'H.m'

@@ -1,4 +1,4 @@
-import UserSchema from '~/server/schemas/User'
+import BranchSchema from '~/server/schemas/Branch'
 import { useDB } from '~/composables/useDB'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
@@ -7,13 +7,16 @@ dayjs.extend(timeToNow)
 dayjs.extend(utc)
 
 export default defineEventHandler(async event => {
-  const data = getQuery(event)
+  const data = await readBody(event)
 
-  const db = await useDB('users')
+  const db = await useDB('nrutyangan')
 
-  const User = db.model('User', UserSchema, 'admins')
+  const Branch = db.model('Branch', BranchSchema, 'branches')
 
-  let found = (await User.findOneAndDelete({ email: data.email }).catch(err => {
+  let found = (await Branch.findOneAndUpdate(
+    { _id: data.id },
+    data.updates
+  ).catch(err => {
     console.log(err)
     return null
   })) as any
@@ -21,12 +24,12 @@ export default defineEventHandler(async event => {
   if (!found) {
     return {
       status: 'error',
-      message: 'Unknown error while deleting user',
+      message: 'Unknown error while updating branch',
     }
   }
 
   return {
     status: 'success',
-    user: found,
+    branch: found,
   }
 })

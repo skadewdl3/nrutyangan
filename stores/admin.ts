@@ -3,11 +3,6 @@ import { defineStore } from 'pinia'
 export const useAdminStore = defineStore('admin', () => {
   const tabs = [
     {
-      name: 'Home',
-      icon: 'material-symbols:home-outline-rounded',
-      link: '/admin/home',
-    },
-    {
       name: 'Branches',
       icon: 'material-symbols:location-on-outline',
       link: '/admin/branches',

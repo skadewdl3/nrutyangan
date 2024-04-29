@@ -56,9 +56,6 @@ const save = async () => {
                 }
             }
         })
-        console.log(data);
-        
-        
     }
     selected.value = -1
     loading.value = false
@@ -74,8 +71,6 @@ const deleteUser = async (index: number) => {
             email: users.value[index].email
         }
     })
-    console.log(data);
-    
     updateUsers()
 }
 

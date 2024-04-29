@@ -37,12 +37,6 @@ onMounted(() => {
         })
     }
 })
-
-if (props.validator) {
-watch(valid, () => {
-    console.log(valid.value);
-})
-}
 </script>
 
 <template>

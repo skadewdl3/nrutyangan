@@ -38,7 +38,7 @@ export const useNavbarStore = defineStore('navbar', () => {
               navigateTo('/login')
             },
           }
-        : { name: 'Dashboard', link: '/admin/home' }
+        : { name: 'Dashboard', link: '/admin/testimonials' }
       : {
           name: 'Login',
           link: '/login',

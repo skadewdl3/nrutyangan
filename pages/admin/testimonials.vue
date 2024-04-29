@@ -88,7 +88,7 @@ updateTestimonials()
         </div>
         
         <template v-else>
-            <div class="testimonial p-8 rounded group relative" v-for="(item, i) in testimonials">
+            <div class="testimonial p-8 rounded group relative text-black" v-for="(item, i) in testimonials">
                 <div class="hover-overlay opacity-0 group-hover:opacity-100 flex flex-col transition-all bg-white/70 absolute top-0 left-0 w-full h-full border-dashed border-2 border-white/70 rounded text-black items-center justify-center">
                     <span class="flex" @click="setSelected(i)">
                         <Icon class="text-2xl mr-2" name="material-symbols:edit" />
