@@ -37,7 +37,6 @@ const save = async () => {
         id: events.value[selected.value]._id,
         updates: {
           name: name.value,
-          date: date.value,
         },
       },
     })
@@ -90,10 +89,24 @@ updateEvents()
 
     <template v-else>
       <div
-        @click="setSelected(i)"
-        class="event my-4 self-end xl:self-center justify-self-center bg-white text-black md:w-[90%] rounded-md overflow-hidden cursor-pointer w-full h-full"
+        class="event my-4 self-end xl:self-center justify-self-center bg-white text-black md:w-[90%] rounded-md overflow-hidden cursor-pointer w-full h-full relative group"
         v-for="(event, i) in events"
       >
+      <div
+          class="hover-overlay opacity-0 group-hover:opacity-100 flex flex-col transition-all bg-white/85 absolute top-0 left-0 w-full h-full border-dashed border-2 border-white/70 rounded text-black items-center justify-center"
+        >
+          <span class="flex" @click="setSelected(i)">
+            <Icon class="text-2xl mr-2" name="material-symbols:edit" />
+            <span class="text-xl my-auto">Edit</span>
+          </span>
+          <span class="flex text-red-500" @click="deleteEvent(i)">
+            <Icon
+              class="text-2xl mr-2"
+              name="material-symbols:delete-outline"
+            />
+            <span class="text-xl my-auto">Remove</span>
+          </span>
+        </div>
         <div class="overflow-hidden">
           <img
             class="transition-all"
@@ -109,7 +122,7 @@ updateEvents()
       </div>
       
       <div
-        class="event-add p-8 rounded flex items-center justify-center border-dashed border-2 border-white/60 hover:border-white cursor-pointer transition-all"
+        class="event-add w-[90%] mx-auto p-8 rounded flex items-center justify-center border-dashed border-2 border-white/60 hover:border-white cursor-pointer transition-all"
         @click="setSelected(events.length)"
       >
         <Icon
