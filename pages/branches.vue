@@ -5,20 +5,19 @@ const data = await $fetch<any>('/api/branches', {
 }).catch(err => console.log(err))
 branches.value = data.branches
 
-console.log(branches.value)
 const navbarStore = useNavbarStore()
 </script>
 
 <template>
   <NuxtLayout name="starry" footer="simply">
     <div
-      class="founder__title w-[90%] md:w-[70%] lg:w-1/2 mx-auto text-center mt-32"
+      class="branches__title w-[90%] md:w-[70%] lg:w-1/2 mx-auto text-center mt-32"
     >
-      <h1 class="founder__title--main text-4xl md:text-6xl font-serif">
+      <h1 class="branches__title--main text-4xl md:text-6xl font-serif">
         Branches
       </h1>
       <h3
-        class="founder__title--sub font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl"
+        class="branches__title--sub font-heading mt-4 md:mt-8 md:text-xl xl:text-2xl"
       >
         Explore our vibrant dance community across multiple locations. Find the
         nearest branch to you and join us in experiencing the joy of dance.
